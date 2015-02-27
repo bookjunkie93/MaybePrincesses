@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class Jump : MonoBehaviour, IDropHandler {
+public class JumpSlot : MonoBehaviour, IDropHandler {
 
 	public GameObject item{
 		get {

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class DragRight : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public static GameObject itemBeingDragged;
 	Vector3 startPosition;
 	Transform startParent;
-	public GameObject Bark;
+	public GameObject Right;
 	
 	#region IBeginDragHandler implementation
 
@@ -29,10 +29,10 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		if (transform.parent == startParent) {
 			transform.position = startPosition;
 		} else {
-			GameObject myObj = Instantiate(Bark) as GameObject;
-			myObj.transform.SetParent (GameObject.Find("Bark Slot").transform);
+			GameObject myObj = Instantiate(Right) as GameObject;
+			myObj.transform.SetParent (GameObject.Find("Right Slot").transform);
 			myObj.transform.position = transform.parent.transform.position;
-			myObj.name = "Bark";
+			myObj.name = "Right";
 			myObj.transform.localScale = new Vector3 (1, 1, 1);
 		}
 	}

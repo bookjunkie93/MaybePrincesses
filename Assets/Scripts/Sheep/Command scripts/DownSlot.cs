@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class Left: MonoBehaviour, IDropHandler {
+public class DownSlot : MonoBehaviour, IDropHandler {
 
 	public GameObject item{
 		get {
