@@ -41,6 +41,7 @@ public class CircuitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler
 		//Debug.Log(transform.parent.name + "2");
 		if (transform.parent == startParent) {
 			//Debug.Log ("back to parent");
+			//this is for git
 			transform.position = startPosition;
 		} 
 		else {
