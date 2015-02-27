@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,10 +46,45 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\DragAndDrop.cs" />
+     <Compile Include="Assets\Scripts\CatRescue\CharacterController2D.cs" />
+     <Compile Include="Assets\Scripts\CatRescue\DragAndDropCat.cs" />
+     <Compile Include="Assets\Scripts\CatRescue\RunnerScript.cs" />
+     <Compile Include="Assets\Scripts\CatRescue\WinCondition.cs" />
+     <Compile Include="Assets\Scripts\Circuit\CircuitBoard.cs" />
+     <Compile Include="Assets\Scripts\Circuit\DragHandler2.cs" />
+     <Compile Include="Assets\Scripts\Circuit\ElementSpawner.cs" />
+     <Compile Include="Assets\Scripts\Circuit\Slot.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\ClothingSelection.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\ClothingTabs.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\ColorSelection.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\ColorSlider.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\DragAndDrop.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\FinishSelection.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\PanelInit.cs" />
+     <Compile Include="Assets\Scripts\ColorSelection\ReplayGame.cs" />
+     <Compile Include="Assets\Scripts\Overworld\Cursor.cs" />
+     <Compile Include="Assets\Scripts\Overworld\EnterMiniGame.cs" />
+     <Compile Include="Assets\Scripts\Overworld\Talker.cs" />
+     <Compile Include="Assets\Scripts\Overworld\Walking.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Bark.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Down.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Jump.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Kick.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Left.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Right.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Command scripts\Up.cs" />
+     <Compile Include="Assets\Scripts\Sheep\DragHandler.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Identifier.cs" />
+     <Compile Include="Assets\Scripts\Sheep\Trash.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{C1DB9213-2CA2-96FF-6A12-6396F8AED48D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{03149D57-DF61-5028-591B-30749D3B3F58}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
