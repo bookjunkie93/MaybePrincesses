@@ -1,18 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Circuit/Slot.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Sheep/DragHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/Overworld/EnterMiniGame.cs" Line="11" Column="8" />
-      <File FileName="Assets/Scripts/CatRescue/RunnerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CatRescue/WinCondition.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Overworld/Walking.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Overworld/Walking.cs" Line="33" Column="3" />
       <File FileName="Assets/Scripts/Overworld/Cursor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ColorSelection/DragAndDrop.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CatRescue/DragAndDropCat.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Sheep/DragHandler.cs" Line="5" Column="1" />
-      <File FileName="Assets/Scripts/Sheep/Identifier.cs" Line="33" Column="23" />
-      <File FileName="Assets/Scripts/Circuit/DragHandler2.cs" Line="16" Column="24" />
-      <File FileName="Assets/Scripts/Circuit/Slot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Overworld/Talker.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Sheep/DragHandler.cs" Line="3" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

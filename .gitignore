@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -16,3 +17,7 @@
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
+=======
+Temp/*
+*DS_Store*
+>>>>>>> 8e732b91a440af6f6e2f0ff5fac9f678e832d614

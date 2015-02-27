@@ -32,10 +32,12 @@ public class Walking : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 		{
+			Debug.Log("running");
 			speed = runspeed;
 		}
 		else
 		{
+			Debug.Log("walking");
 			speed = walkspeed;
 		}
 	}
@@ -48,20 +50,24 @@ public class Walking : MonoBehaviour
 		
 		//But we Check if we are at the new Position, before we can add some more
 		//it will prevent to move before you are at your next 'tile'
-		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos && CheckTarget (Vector3.right)) 
+		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos /*&& CheckTarget (Vector3.right)*/) 
 		{
+			Debug.Log("going right!");
 			pos += Vector3.right;
 		}
-		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos && CheckTarget (Vector3.left)) 
+		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos /*&& CheckTarget (Vector3.left)*/) 
 		{
+			Debug.Log("going left!");
 			pos += Vector3.left;
 		}
-		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos && CheckTarget (Vector3.up)) 
+		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
 		{
+			Debug.Log("going up!!");
 			pos += Vector3.up;
 		}
-		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos && CheckTarget (Vector3.down)) 
+		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos /*&& CheckTarget (Vector3.down)*/) 
 		{
+			Debug.Log("going down!");
 			pos += Vector3.down;
 		}
 		
@@ -77,11 +83,13 @@ public class Walking : MonoBehaviour
 		obst = Physics2D.Raycast (transform.position, dir, 1F);
 		dist = obst.distance;
 		if (dist > 0.6F)
-		{ 
+		{
+			Debug.Log("returning true");
 			return true;
 		}
 		else
 		{
+			Debug.Log("returning false");
 			return false;
 		}
 	}

@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\CatRescue\RunnerScript.cs" />
      <Compile Include="Assets\Scripts\CatRescue\WinCondition.cs" />
      <Compile Include="Assets\Scripts\Circuit\CircuitBoard.cs" />
+     <Compile Include="Assets\Scripts\Circuit\CircuitDragHandler.cs" />
+     <Compile Include="Assets\Scripts\Circuit\Destroy.cs" />
      <Compile Include="Assets\Scripts\Circuit\DragHandler2.cs" />
      <Compile Include="Assets\Scripts\Circuit\ElementSpawner.cs" />
      <Compile Include="Assets\Scripts\Circuit\Slot.cs" />
