@@ -7,6 +7,8 @@ public class Cursor : MonoBehaviour
 
 	public Talker selected;
 
+	public GameObject gamePortal;
+
 	private Vector3 pos;
 
 	// Use this for initialization
@@ -31,6 +33,10 @@ public class Cursor : MonoBehaviour
 			GameObject over = coll.gameObject;
 			selected = over.GetComponent <Talker> ();
 		}
+		else if (coll.gameObject.tag == "portal")
+		{
+			gamePortal = coll.gameObject;
+		}
 	}
 
 	void OnTriggerStay2D (Collider2D coll)
@@ -40,6 +46,7 @@ public class Cursor : MonoBehaviour
 			GameObject over = coll.gameObject;
 			selected = over.GetComponent <Talker> ();
 		}
+		
 	}
 
 	private void Movement ()
@@ -71,6 +78,10 @@ public class Cursor : MonoBehaviour
 			if(selected != null)
 			{
 				selected.Speak ();
+			}
+			else if (gamePortal != null)
+			{
+				gamePortal.GetComponent<EnterMiniGame>().EnterGame();
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System.Collections;
 public class EnterMiniGame : MonoBehaviour {
 	public int gameNumber;
 
-	void OnTriggerEnter2D (Collider2D collider) {
+	public void EnterGame () {
 		//save Player progress and location for re-loading after minigame
 		Application.LoadLevel(gameNumber);
 	}
