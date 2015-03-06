@@ -81,7 +81,7 @@ public class Cursor : MonoBehaviour
 			}
 			else if (gamePortal != null)
 			{
-				gamePortal.GetComponent<EnterMiniGame>().EnterGame();
+				//gamePortal.GetComponent<EnterMiniGame>().EnterGame();
 			}
 		}
 	}
