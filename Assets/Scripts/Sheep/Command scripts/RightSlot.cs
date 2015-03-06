@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class Kick : MonoBehaviour, IDropHandler {
+public class RightSlot : MonoBehaviour, IDropHandler {
 
 	public GameObject item{
 		get {

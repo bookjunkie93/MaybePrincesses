@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class Up : MonoBehaviour, IDropHandler {
+public class BarkSlot: MonoBehaviour, IDropHandler {
 
 	public GameObject item{
 		get {
