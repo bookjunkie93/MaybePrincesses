@@ -69,8 +69,7 @@ public class Walking : MonoBehaviour
 		{
 			Debug.Log("going down!");
 			pos += Vector3.down;
-		}
-		
+		} 
 		//Here you will move Towards the new position ...
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 		
