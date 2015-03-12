@@ -6,7 +6,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	public static GameObject itemBeingDragged;
 	Vector3 startPosition;
 	Transform startParent;
-	public GameObject Bark;
+//	public GameObject Bark;
 	
 	#region IBeginDragHandler implementation
 
@@ -29,11 +29,11 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		if (transform.parent == startParent) {
 			transform.position = startPosition;
 		} else {
-			GameObject myObj = Instantiate(Bark) as GameObject;
-			myObj.transform.SetParent (GameObject.Find("Bark Slot").transform);
-			myObj.transform.position = transform.parent.transform.position;
-			myObj.name = "Bark";
-			myObj.transform.localScale = new Vector3 (1, 1, 1);
+//			GameObject myObj = Instantiate(Bark) as GameObject;
+//			myObj.transform.SetParent (GameObject.Find("Bark Slot").transform);
+//			myObj.transform.position = transform.parent.transform.position;
+//			myObj.name = "Bark";
+//			myObj.transform.localScale = new Vector3 (1, 1, 1);
 		}
 	}
 	

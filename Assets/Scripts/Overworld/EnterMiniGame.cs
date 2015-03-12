@@ -6,6 +6,7 @@ public class EnterMiniGame : MonoBehaviour {
 
 	public void OnTriggerEnter2D (Collider2D collider) {
 		//save Player progress and location for re-loading after minigame
+		GameManagerScript.control.setPos(Walking.instance.transform.position);
 		Application.LoadLevel(gameNumber);
 	}
 	public void ReturnToOverworld () {

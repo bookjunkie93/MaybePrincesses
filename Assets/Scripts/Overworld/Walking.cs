@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Walking : MonoBehaviour 
 {
+	public static Walking instance;
+
 	public float walkspeed = 3F;
 	public float runspeed = 7F;
 	public float dist;
@@ -12,12 +14,18 @@ public class Walking : MonoBehaviour
 	private float speed;
 	private Vector3 pos;
 	private Transform tr;
+
+
+	void Awake()
+	{
+		instance = this;
+	}
 	
 	void Start ()
 	{
-		//Here we set the Values from the current position
-		Debug.Log ("I exist!");
-		pos = transform.position;
+		//Here we set the Values from the current position	
+		pos = GameManagerScript.control.overworldPos;
+		transform.position = pos;
 		tr = transform;
 	}
 	
@@ -32,12 +40,10 @@ public class Walking : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 		{
-			Debug.Log("running");
 			speed = runspeed;
 		}
 		else
 		{
-			Debug.Log("walking");
 			speed = walkspeed;
 		}
 	}
@@ -69,8 +75,7 @@ public class Walking : MonoBehaviour
 		{
 			Debug.Log("going down!");
 			pos += Vector3.down;
-		}
-		
+		} 
 		//Here you will move Towards the new position ...
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 		
