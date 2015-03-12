@@ -19,12 +19,16 @@ public class ClothingTabs : MonoBehaviour {
 	}
 
 	public void setPanel() {
-		foreach (GameObject g in otherPanels) {
-			g.SetActive(false);
+
+		if(matchingPanel != null) {
+
+			foreach (GameObject g in otherPanels) {
+				g.SetActive(false);
+			}
+			
+			matchingPanel.SetActive (true);
 		}
-
-		matchingPanel.SetActive (true);
-
+	
 		GetComponentInParent<PanelInit> ().currentItem = matchingItem;
 		Slider[] sliders = GetComponentInParent<PanelInit>().GetComponentsInChildren<Slider>();
 
