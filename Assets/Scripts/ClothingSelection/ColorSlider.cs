@@ -7,6 +7,8 @@ public class ColorSlider : MonoBehaviour {
 
 	float divisor = 255f;
 	Image currentItem;
+
+
 	// Use this for initialization
 	void Start () {
 		s = GetComponent<Slider> ();
@@ -34,5 +36,6 @@ public class ColorSlider : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			fields[i].text = sliders[i].value.ToString();
 		}	
+		}
+	
 	}
-}
