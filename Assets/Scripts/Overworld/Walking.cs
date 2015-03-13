@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Walking : MonoBehaviour 
 {
+	public static Walking instance;
+
 	public float walkspeed = 3F;
 	public float runspeed = 7F;
 	public float dist;
@@ -12,12 +14,18 @@ public class Walking : MonoBehaviour
 	private float speed;
 	private Vector3 pos;
 	private Transform tr;
+
+
+	void Awake()
+	{
+		instance = this;
+	}
 	
 	void Start ()
 	{
-		//Here we set the Values from the current position
-		Debug.Log ("I exist!");
-		pos = transform.position;
+		//Here we set the Values from the current position	
+		pos = GameManagerScript.control.overworldPos;
+		transform.position = pos;
 		tr = transform;
 	}
 	
@@ -32,12 +40,10 @@ public class Walking : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 		{
-			Debug.Log("running");
 			speed = runspeed;
 		}
 		else
 		{
-			Debug.Log("walking");
 			speed = walkspeed;
 		}
 	}
@@ -52,25 +58,20 @@ public class Walking : MonoBehaviour
 		//it will prevent to move before you are at your next 'tile'
 		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos /*&& CheckTarget (Vector3.right)*/) 
 		{
-			Debug.Log("going right!");
 			pos += Vector3.right;
 		}
 		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos /*&& CheckTarget (Vector3.left)*/) 
 		{
-			Debug.Log("going left!");
 			pos += Vector3.left;
 		}
 		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
 		{
-			Debug.Log("going up!!");
 			pos += Vector3.up;
 		}
 		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos /*&& CheckTarget (Vector3.down)*/) 
 		{
-			Debug.Log("going down!");
 			pos += Vector3.down;
-		}
-		
+		} 
 		//Here you will move Towards the new position ...
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 		
@@ -84,12 +85,10 @@ public class Walking : MonoBehaviour
 		dist = obst.distance;
 		if (dist > 0.6F)
 		{
-			Debug.Log("returning true");
 			return true;
 		}
 		else
 		{
-			Debug.Log("returning false");
 			return false;
 		}
 	}
