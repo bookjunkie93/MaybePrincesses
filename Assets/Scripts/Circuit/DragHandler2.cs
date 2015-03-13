@@ -26,6 +26,17 @@ public class DragHandler2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 	public void OnDrag (PointerEventData eventData)
 	{
 		transform.position = Input.mousePosition;
+
+		//rotate on spacebar
+/*		if(Input.GetKeyDown("space"))
+		{
+			string name = itemBeingDragged.name;
+			if((name == "Wire") || (name == "Corner Wire")){
+				itemBeingDragged.name = 
+
+			itemBeingDragged.transform.Rotate(0,0,-90);
+		}
+		*/
 	}
 	#endregion
 	
