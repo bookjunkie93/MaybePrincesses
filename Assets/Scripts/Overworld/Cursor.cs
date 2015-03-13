@@ -77,7 +77,6 @@ public class Cursor : MonoBehaviour
 		{
 			if(selected != null)
 			{
-				selected.Speak ();
 			}
 			else if (gamePortal != null)
 			{
