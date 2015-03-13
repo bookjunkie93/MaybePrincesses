@@ -58,22 +58,18 @@ public class Walking : MonoBehaviour
 		//it will prevent to move before you are at your next 'tile'
 		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos /*&& CheckTarget (Vector3.right)*/) 
 		{
-			Debug.Log("going right!");
 			pos += Vector3.right;
 		}
 		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos /*&& CheckTarget (Vector3.left)*/) 
 		{
-			Debug.Log("going left!");
 			pos += Vector3.left;
 		}
 		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
 		{
-			Debug.Log("going up!!");
 			pos += Vector3.up;
 		}
 		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos /*&& CheckTarget (Vector3.down)*/) 
 		{
-			Debug.Log("going down!");
 			pos += Vector3.down;
 		} 
 		//Here you will move Towards the new position ...
@@ -89,12 +85,10 @@ public class Walking : MonoBehaviour
 		dist = obst.distance;
 		if (dist > 0.6F)
 		{
-			Debug.Log("returning true");
 			return true;
 		}
 		else
 		{
-			Debug.Log("returning false");
 			return false;
 		}
 	}

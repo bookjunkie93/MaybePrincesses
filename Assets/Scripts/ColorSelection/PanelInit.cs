@@ -3,16 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PanelInit : MonoBehaviour {
-	public Image character;
 	public Image currentItem;
 	public Image currentHair;
 	public Image currentTop;
 	public Image currentBottom;
-	public Image currentSleeves;
 	public Sprite defaultHair;
 	public Sprite defaultTop;
 	public Sprite defaultBottom;
-
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +18,7 @@ public class PanelInit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
 	}
 	
 }
