@@ -5,6 +5,7 @@ using System.Collections;
 public class ClothingSelection : MonoBehaviour {
 	Image clothingItem;
 	public Image currentItem;
+
 	void Start(){
 		clothingItem = GetComponent<Image> ();
 	}
@@ -15,7 +16,16 @@ public class ClothingSelection : MonoBehaviour {
 	}
 
 	public void ChangeItem() {
-		currentItem.sprite = clothingItem.sprite;
+		GetComponentInParent<PanelInit>().currentItem = currentItem;
+		if(clothingItem.name == "none") {
+			currentItem.enabled = false;
+		} else {
+			currentItem.enabled = true;
+			currentItem.sprite = clothingItem.sprite;
+		}
+
+
+
 	}
 	
 }
