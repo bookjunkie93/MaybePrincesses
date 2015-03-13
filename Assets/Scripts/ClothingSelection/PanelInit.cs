@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PanelInit : MonoBehaviour {
+	public Image character;
 	public Image currentItem;
 	public Image currentHair;
 	public Image currentTop;
