@@ -10,15 +10,14 @@ public class Talker : MonoBehaviour
 	public string noText;
 	bool proximity;
 	Rect dialogBox;
-	public TextAsset textCorpus;
+	public DialogNode current;
 	
 	void Start ()
 	{
-		ParseText();
 		FormatText ();
 		speakText.text = noText;
 		proximity = false;
-		dialogBox = new Rect ((Screen.width/3)+30, Screen.height-50f, 300f, 300f);
+		dialogBox = new Rect ((Screen.width/3)+30, Screen.height-50f, 300f, 300f);	
 	}
 	
 	void OnTriggerEnter2D (Collider2D collider)
@@ -34,11 +33,7 @@ public class Talker : MonoBehaviour
 		proximity = false;
 	}
 	
-	void ParseText ()
-	{
-		
-		
-	}
+
 	void FormatText ()
 	{
 		speakText = new GUIContent();
@@ -54,6 +49,7 @@ public class Talker : MonoBehaviour
 		{
 			speakText.text = dialogText;
 		}
+		else if (proximity && Input.GetKeyDown
 		GUI.Label(dialogBox, speakText, format);
 		
 		

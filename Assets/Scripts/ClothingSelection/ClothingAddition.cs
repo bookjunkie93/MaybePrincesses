@@ -19,6 +19,6 @@ public class ClothingAddition : MonoBehaviour {
 	}
 
 	public void removeItem() {
-		item.renderer.enabled = false;
+		item.GetComponent<Renderer>().enabled = false;
 	}
 }
