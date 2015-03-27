@@ -7,14 +7,16 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 	public static CircuitBoard instance;
 	[SerializeField] Transform slots;
 	int[,] grid;
-	int[,] solution;
+	//width of the board, 10
+	public int x;
+	//height of the board, 7
+	public int y;
 	// Use this for initialization
 	void Awake(){
 		instance = this;
 	}
 	void Start () {
 		setGrid ();
-		setSolution ();
 		HasChanged ();
 	}
 
@@ -27,19 +29,31 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 			GameObject item = slotTransform.GetComponent<Slot>().item;
 			//if there is an item in the slot
 			if (item){
+				//Debug.Log("i: " + i + "  j: " + j);
 				string name = item.name;
-				if (name == "Wire"){
+				if (name == "Horizontal Wire"){
 					grid[i,j] = 1;
-					//Debug.Log("grid change");
 				}
-				else if (name == "Corner Wire"){
+				else if (name == "Vertical Wire"){
 					grid[i,j] = 2;
 				}
-				else if (name == "Lightbulb"){
+				else if (name == "Corner Up Right"){
 					grid[i,j] = 3;
 				}
-				else if (name == "Battery"){
+				else if (name == "Corner Down Right"){
 					grid[i,j] = 4;
+				}
+				else if (name == "Corner Left Down"){
+					grid[i,j] = 5;
+				}
+				else if (name == "Corner Left Up"){
+					grid[i,j] = 6;
+				}
+				else if (name == "Lightbulb"){
+					grid[i,j] = 7;
+				}
+				else if (name == "Battery"){
+					grid[i,j] = 8;
 				}
 			}
 			else {
@@ -47,7 +61,7 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 			}
 			counter++;
 			//if not at the begining of a row
-			if (counter % 7 != 0){
+			if (counter % 10 != 0){
 				i++; 
 			}
 			else {
@@ -58,19 +72,6 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 	}
 	
 	private void setGrid(){
-		
-		// Obtain the entire collection
-		//Panel[] slots = GetComponentInChildren<Panel>().
-		
-		// Iterate through it
-		// foreach of the slots we get them in a 1D collection
-		//     Then we can access them by creating another function
-		//         string GetSlot(_x,y){
-		//            slots + _x * 4 would recover a slot ina grid like manner
-		//            return slots[x+ _x * 4)
-		//        }
-		
-		int x = 7; int y =4; 
 		grid = new int[x,y];
 		for (int i = 0; i < x; i++) {
 			for(int j = 0; j < y; j++){
@@ -80,37 +81,117 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 	}
 
 	public bool CheckSolution(){
-		bool check = true;
-		for (int i = 0; i < 7; i++) {
-			for(int j = 0; j < 4; j++){
-			//	Debug.Log(i.ToString() + ", " + j.ToString());
-				if (grid[i,j] != solution[i,j]){
-					check = false;
-					break;
+		int cur; int left; int right; int above; int below;
+		//scanning column major
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				cur = grid[i,j];
+				Debug.Log(cur + " ");
+				//need to check left and right
+				if ((cur == 1) || (cur == 7) || (cur == 8)){
+					//at the edge
+					if ((i == 0) || (i == (x-1))){
+						return false;
+					}
+					left = grid[i-1, j];
+					//if left doesn't match up
+					if ((left == 2) || (left == 5) || (left == 6) || (left == -1)){
+						return false;
+					}
+					right = grid[i+1, j];
+					//if right doesn't match up
+					if ((right == 2) || (right == 3) || (right == 4) || (right == -1)){
+						return false;
+					}
+				}
+				else if (cur == 2){
+					//at the edge
+					if ((j == 0) || (j == (y-1))){
+						return false;
+					}
+					above = grid[i, j-1];
+					//if above doesn't match up
+					if ((above == 1) || (above == 3) || (above == 6) || (above == 7) || (above == 8) || (above == -1)){
+						return false;
+					}
+					below = grid[i, j+1];
+					//if below doesn't match up
+					if ((below == 1) || (below == 4) || (below == 5) || (below == 7) || (below == 8) || (below == -1)){
+						return false;
+					}
+				}
+				else if (cur == 3){
+					//at the edge
+					if ((j == 0) || (i == (x-1))){
+						return false;
+					}
+					above = grid[i, j-1];
+					//if above doesn't match up
+					if ((above == 1) || (above == 3) || (above == 6) || (above == 7) || (above == 8) || (above == -1)){
+						return false;
+					}
+					right = grid[i+1, j];
+					//if right doesn't match up
+					if ((right == 2) || (right == 3) || (right == 4) || (right == -1)){
+						return false;
+					}
+				}
+				else if (cur == 4){
+				//at the edge
+					if((j == (y-1)) || (i == (x-1))){
+						Debug.Log("edge");
+						return false;
+					}
+					below = grid[i, j+1];
+					//if below doesn't match up
+					if ((below == 1) || (below == 4) || (below == 5) || (below == 7) || (below == 8) || (below == -1)){
+						Debug.Log("below:" + below + " doesn't match");
+						return false;
+					}
+					right = grid[i+1, j];
+					//if right doesn't match up
+					if ((right == 2) || (right == 3) || (right == 4) || (right == -1)){
+						Debug.Log("right doesn't match");
+						return false;
+					}
+				}
+				else if (cur == 5){
+					//at edge
+					if ((i == 0) || (j == (y-1))){
+						return false;
+					}
+					left = grid[i-1, j];
+					//if left doesn't match up
+					if ((left == 2) || (left == 5) || (left == 6) || (left == -1)){
+						return false;
+					}
+					below = grid[i, j+1];
+					//if below doesn't match up
+					if ((below == 1) || (below == 4) || (below == 5) || (below == 7) || (below == 8) || (below == -1)){
+						return false;
+					}
+				}
+				else if (cur == 6){
+					//at edge
+					if((i == 0) || (j == 0)){
+						return false;
+					}
+					left = grid[i-1, j];
+					//if left doesn't match up
+					if ((left == 2) || (left == 5) || (left == 6) || (left == -1)){
+						return false;
+					}
+					above = grid[i, j-1];
+					//if above doesn't match up
+					if ((above == 1) || (above == 3) || (above == 6) || (above == 7) || (above == 8) || (above == -1)){
+						return false;
+					}
 				}
 			}
 		}
-		return check;
+			return true;
 	}
-	
-	private void setSolution(){
-		int w = 7; int z = 4;
-		solution = new int[w, z];
-		for (int i = 0; i < w; i++) {
-			for(int j = 0; j < z; j++){
-				solution[i,j] = -1;
-			}
-		}
-		//lightbulb slot
-		solution[1,1] = 3;
-		//battery slot
-		solution[5,1] = 4;
-		//straight wires between battery and lightbulb
-		solution [2, 1] = 1;
-		solution [3, 1] = 1;
-		solution [4, 1] = 1;
 
-}
 
 	#endregion
 }
