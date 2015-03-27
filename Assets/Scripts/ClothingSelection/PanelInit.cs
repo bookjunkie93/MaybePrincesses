@@ -56,7 +56,7 @@ public class PanelInit : MonoBehaviour {
 					go.GetComponent<Image>().color = itemColor;
 				}
 			} else {
-				go.SetActive(false);
+				go.GetComponent<Image>().enabled = false;
 //				print ("didn't show " + go.name);
 			}
 		}
