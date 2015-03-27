@@ -40,14 +40,14 @@ public class RunnerScript : MonoBehaviour {
 			{
 				startTime = Time.time;
 				if(!triggered){
-					this.rigidbody2D.AddForce(movement * (speed*Time.deltaTime));
+					this.GetComponent<Rigidbody2D>().AddForce(movement * (speed*Time.deltaTime));
 					timeElapsed += (Time.time - startTime);
 				}
 			
 				else{
 					Debug.Log("Jumping!");
-					this.rigidbody2D.velocity = new Vector2(0,0);
-					this.rigidbody2D.AddForce(jump * (jumpSpeed));
+					this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+					this.GetComponent<Rigidbody2D>().AddForce(jump * (jumpSpeed));
 					triggered = false;
 				}
 				timeElapsed += Time.time - startTime;
@@ -68,8 +68,8 @@ public class RunnerScript : MonoBehaviour {
 		this.gameObject.SetActive(true);
 		this.transform.position = startPos;
 		this.transform.rotation = startRot;
-		this.rigidbody2D.angularVelocity = 0;
-		this.rigidbody2D.velocity = new Vector2(0,0);
+		this.GetComponent<Rigidbody2D>().angularVelocity = 0;
+		this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 		triggered = false;
 		trySolution = false;
 		goal = false;

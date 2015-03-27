@@ -17,6 +17,13 @@ public class ColorInput : MonoBehaviour {
 	public void UpdateColor() {
 		InputField f = GetComponent<InputField>();
 		Slider s = GetComponentInParent<Slider>();
-		s.value = int.Parse(f.text);
+		int newVal = int.Parse(f.text);
+		if (newVal > 255) {
+			print ("Too large a number!");
+			s.value = 255;
+			f.text = "255";
+		} else {
+			s.value = newVal;
+		}
 	}
 }

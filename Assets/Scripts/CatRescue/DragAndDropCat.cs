@@ -23,7 +23,7 @@ public class DragAndDropCat : MonoBehaviour {
 	void OnMouseDrag()
 	{		
 		//stop errant rotation when dragging
-		this.rigidbody2D.angularVelocity = 0f;
+		this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
 		//rotate on spacebar
 		if(Input.GetKeyDown("space"))

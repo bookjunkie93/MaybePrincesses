@@ -18,14 +18,23 @@ public class FinishSelection : MonoBehaviour {
 	}
 
 	public void saveClothing() {
+//		PlayerPrefs.DeleteAll();
+		foreach(GameObject g in GameObject.FindGameObjectsWithTag("CharacterClothingItem")) {
+			if (g.activeInHierarchy && g.GetComponent<Image>().enabled) {
+				PlayerPrefs.SetString(g.GetComponent<Image>().name, g.GetComponent<Image>().sprite.name);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", g.GetComponent<Image>().color.r);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", g.GetComponent<Image>().color.g);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "B", g.GetComponent<Image>().color.b);
+				
+			} else {
+				PlayerPrefs.SetString(g.GetComponent<Image>().name, "");
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", 1f);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", 1f);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "B", 1f);
+			}
 
+		}
 
-		GameObject item = GameObject.Find("BasePanel");
-		item.SetActive(false);
-
-
-		restart.SetActive(true);
-
-
+		PlayerPrefs.Save();
 	}
 }
