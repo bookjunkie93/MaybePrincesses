@@ -23,7 +23,10 @@ public class DogbotMovement : MonoBehaviour {
 //	}
 
 
-
+	public void resetDogbot() {
+		Vector3 newPos = new Vector3((float)43.8, (float)190.9, (float)0.0);
+		transform.position = newPos;
+	}
 
 	//	Vector3 startingPosition;
 	bool call = true;
