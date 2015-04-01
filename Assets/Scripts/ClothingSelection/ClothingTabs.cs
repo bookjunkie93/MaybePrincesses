@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ClothingTabs : MonoBehaviour {
 	public GameObject matchingPanel;
-	public Image matchingItem;
+	public Image[] matchingItems;
 
 	// Use this for initialization
 	void Start () {
@@ -26,12 +26,20 @@ public class ClothingTabs : MonoBehaviour {
 
 			matchingPanel.SetActive (true);
 		}
+
+		foreach(Image i in matchingItems) {
+
+			if (i.enabled) {
+				
+				GetComponentInParent<PanelInit> ().currentItem = i;
+				
+				Slider[] sliders = GetComponentInParent<PanelInit>().GetComponentsInChildren<Slider>();
+				ColorSlider.UpdateSliders(i.color, sliders);
+				break;
+			}
+			
+		}
 	
-		GetComponentInParent<PanelInit> ().currentItem = matchingItem;
-
-		Slider[] sliders = GetComponentInParent<PanelInit>().GetComponentsInChildren<Slider>();
-		ColorSlider.UpdateSliders(matchingItem.color, sliders);
-
 	
 	}
 

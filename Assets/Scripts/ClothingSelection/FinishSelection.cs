@@ -28,9 +28,9 @@ public class FinishSelection : MonoBehaviour {
 				
 			} else {
 				PlayerPrefs.SetString(g.GetComponent<Image>().name, "");
-				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", 1f);
-				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", 1f);
-				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "B", 1f);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", g.GetComponent<Image>().color.r);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", g.GetComponent<Image>().color.g);
+				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "B", g.GetComponent<Image>().color.b);
 			}
 
 		}

@@ -17,7 +17,7 @@ public class SubOptions : MonoBehaviour {
 	}
 
 	public void chooseOption() {
-		parent.GetComponent<ClothingTabs>().matchingItem = correspondingItem;
+//		parent.GetComponent<ClothingTabs>().matchingItem = correspondingItem;
 		print ("set matching item to: " + correspondingItem.name);
 	}
 }
