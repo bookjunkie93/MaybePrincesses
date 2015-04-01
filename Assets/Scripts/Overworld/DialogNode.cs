@@ -1,44 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class DialogNode : MonoBehaviour {
+public class DialogNode {
+	public struct response {
+		public string text;
+		public int goToNode;
+	};
+	int nodeNum;
 	string prompt;
-	List<string> responses;
-	List<DialogNode> children;
+	List<response> responses;
 	public TextAsset content;
 	// Use this for initialization
-	void Start () {
-		children = new List<DialogNode>();
-		responses = new List<string>();
-		ParseContent();
-		PrintContent();
+	void Awake () {
+		responses = new List<response>();
+		//PrintContent();
 	}
-	void ParseContent ()
+	public void SetNode (int num, string pmpt, List<response> input)
 	{
 		bool addChildren = false;
-		string [] sourceText = content.text.Split('\n');
-		prompt = sourceText[0];
-		for(int i = 1; i < sourceText.Length; i++)
-		{	
-			responses.Add(sourceText[i].TrimStart('\t'));
-		}	
+		nodeNum = num;
+		prompt = pmpt;
+		responses = input;	
 	}
 
-	public void SetChildren (DialogNode[] nodeList)
-	{
-		for (int i = 0; i < children.Count; i++)
-		{
-			children.Add(nodeList[i]);
-		}
-	}
+	
 	
 	public string getPrompt ()
 	{
 		return prompt;
 	}
 	
-	public List<string> getResponses ()
+	public List<response> getResponses ()
 	{
 		return responses;
 	}
@@ -51,9 +45,12 @@ public class DialogNode : MonoBehaviour {
 		}
 	}
 
-	/*DialogNode GoToChild ()
+	
+
+	public DialogNode GoToChild (int child)
 	{
-	}*/
+		return Talker.instance.dialogTree[child];
+	}
 	
 	
 	// Update is called once per frame

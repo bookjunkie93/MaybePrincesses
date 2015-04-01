@@ -17,20 +17,20 @@ public class ReplayGame : MonoBehaviour {
 	}
 
 	public void replay() {
-		basePanel.SetActive(true);
-		PanelInit p = basePanel.GetComponent<PanelInit>();
-
-		p.currentTop.sprite = p.defaultTop;
-		p.currentTop.color = Color.white;
-
-		p.currentBottom.sprite = p.defaultBottom;
-		p.currentBottom.color = Color.white;
-
-		p.currentHair.sprite = p.defaultHair;
-		p.currentHair.color = Color.white;
-
-		p.currentItem = p.currentTop;
-
-		GameObject.Find("Restart").SetActive(false);
+//		basePanel.SetActive(true);
+//		PanelInit p = basePanel.GetComponent<PanelInit>();
+//
+//		p.currentTop.sprite = p.defaultTop;
+//		p.currentTop.color = Color.white;
+//
+//		p.currentBottom.sprite = p.defaultBottom;
+//		p.currentBottom.color = Color.white;
+//
+//		p.currentHair.sprite = p.defaultHair;
+//		p.currentHair.color = Color.white;
+//
+//		p.currentItem = p.currentTop;
+//
+//		GameObject.Find("Restart").SetActive(false);
 	}
 }
