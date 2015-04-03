@@ -18,7 +18,7 @@ public class ClothingAddition : MonoBehaviour {
 
 	public void toggleItem() {
 	
-		item.gameObject.GetComponent<Image>().enabled = true;
+		item.enabled = true;
 		GetComponentInParent<PanelInit> ().currentItem = item;
 		
 		float newRed =  item.color.r;
@@ -34,7 +34,7 @@ public class ClothingAddition : MonoBehaviour {
 	}
 
 	public void removeItem() {
-		item.gameObject.GetComponent<Image>().enabled = false;
+		item.enabled = false;
 
 		sliders[0].value = Mathf.Round(255);
 		sliders[1].value = Mathf.Round(255);
