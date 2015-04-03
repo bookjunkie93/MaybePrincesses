@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class CircuitBoard : MonoBehaviour, IHasChanged {
 	public static CircuitBoard instance;
 	[SerializeField] Transform slots;
-	int[,] grid;
 	//width of the board, 10
 	public int x;
 	//height of the board, 7
 	public int y;
+	int[,] grid;
+
 	// Use this for initialization
 	void Awake(){
 		instance = this;
@@ -29,10 +30,11 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 			GameObject item = slotTransform.GetComponent<Slot>().item;
 			//if there is an item in the slot
 			if (item){
-				//Debug.Log("i: " + i + "  j: " + j);
+				Debug.Log("item in" + i + ", " + j);
 				string name = item.name;
 				if (name == "Horizontal Wire"){
 					grid[i,j] = 1;
+					Debug.Log("horizontal wire");
 				}
 				else if (name == "Vertical Wire"){
 					grid[i,j] = 2;
@@ -51,12 +53,15 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 				}
 				else if (name == "Lightbulb"){
 					grid[i,j] = 7;
+					Debug.Log("bulb");
 				}
 				else if (name == "Battery"){
 					grid[i,j] = 8;
+					Debug.Log("battery");
 				}
 			}
 			else {
+			//	Debug.Log("i: " + i + "  j: " + j);
 				grid[i,j] = -1;
 			}
 			counter++;
@@ -73,6 +78,7 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 	
 	private void setGrid(){
 		grid = new int[x,y];
+//		Debug.Log("x: " + x + "  y: " + y);
 		for (int i = 0; i < x; i++) {
 			for(int j = 0; j < y; j++){
 				grid[i,j] = -1;
@@ -86,7 +92,6 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				cur = grid[i,j];
-				Debug.Log(cur + " ");
 				//need to check left and right
 				if ((cur == 1) || (cur == 7) || (cur == 8)){
 					//at the edge
