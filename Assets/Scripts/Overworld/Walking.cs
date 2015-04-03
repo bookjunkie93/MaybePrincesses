@@ -63,15 +63,15 @@ public class Walking : MonoBehaviour
 		//it will prevent to move before you are at your next 'tile'
 		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos /*&& CheckTarget (Vector3.right)*/) 
 		{
+			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			anim.SetInteger("state", 7);
-//			transform.localScale = new Vector3(transform.localScale.x,transform.localScale.y,transform.localScale.z);
 			pos += Vector3.right;
 
 		}
 		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos /*&& CheckTarget (Vector3.left)*/) 
 		{
+			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			anim.SetInteger("state", 5);
-			transform.localScale = new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
 			pos += Vector3.left;
 		}
 		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
