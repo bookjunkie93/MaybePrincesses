@@ -16,9 +16,13 @@ public class PanelInit : MonoBehaviour {
 		foreach (GameObject g in skinButtons) {
 			skinColors.Add(g.GetComponent<Button>().colors.normalColor);
 		}
+		if (PlayerPrefs.HasKey("characterBody")) {
 
-//		RandomizeCharacter(skinColors, true);
-		LoadCharacter();
+			LoadCharacter();
+		} else {
+
+			RandomizeCharacter(skinColors, true);
+		}
 	}
 	
 	// Update is called once per frame
@@ -43,13 +47,14 @@ public class PanelInit : MonoBehaviour {
 
 	public static void LoadCharacter() {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("CharacterClothingItem")) {
+			print ("checking:" + go.name);
 			if (PlayerPrefs.GetString(go.name) != "") {
 				Sprite item = Resources.Load("Full-Size/" + PlayerPrefs.GetString(go.name), typeof(Sprite)) as Sprite;
 				float r = PlayerPrefs.GetFloat(go.name + "R");
 				float g = PlayerPrefs.GetFloat(go.name + "G");
 				float b = PlayerPrefs.GetFloat(go.name + "B");
 				Color itemColor = new Color(r, g, b);
-//				print (go.name);
+				print (go.name);
 //				print (itemColor.ToString());
 				if (item != null) {
 					go.GetComponent<Image>().sprite = item;
@@ -57,7 +62,7 @@ public class PanelInit : MonoBehaviour {
 				}
 			} else {
 				go.GetComponent<Image>().enabled = false;
-//				print ("didn't show " + go.name);
+				print ("didn't show " + go.name);
 			}
 		}
 	}
