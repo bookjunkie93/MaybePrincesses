@@ -30,7 +30,7 @@ public class Follower1 : MonoBehaviour {
 			//			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 			//			Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 			//			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, q, Time.deltaTime * moveSpeed);
-			Debug.Log (myTransform.rotation);
+//			Debug.Log (myTransform.rotation);
 			myTransform.rotation = Quaternion.Slerp (myTransform.rotation, Quaternion.LookRotation (target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 			myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
 			Vector3 newpos = myTransform.position;

@@ -16,9 +16,13 @@ public class PanelInit : MonoBehaviour {
 		foreach (GameObject g in skinButtons) {
 			skinColors.Add(g.GetComponent<Button>().colors.normalColor);
 		}
+		if (PlayerPrefs.HasKey("characterBody")) {
 
-//		RandomizeCharacter(skinColors, true);
-		LoadCharacter();
+			LoadCharacter();
+		} else {
+
+			RandomizeCharacter(skinColors, true);
+		}
 	}
 	
 	// Update is called once per frame
@@ -43,6 +47,7 @@ public class PanelInit : MonoBehaviour {
 
 	public static void LoadCharacter() {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("CharacterClothingItem")) {
+//			print ("checking:" + go.name);
 			if (PlayerPrefs.GetString(go.name) != "") {
 				Sprite item = Resources.Load("Full-Size/" + PlayerPrefs.GetString(go.name), typeof(Sprite)) as Sprite;
 				float r = PlayerPrefs.GetFloat(go.name + "R");
