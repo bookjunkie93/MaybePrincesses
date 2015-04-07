@@ -61,26 +61,26 @@ public class Walking : MonoBehaviour
 		
 		//But we Check if we are at the new Position, before we can add some more
 		//it will prevent to move before you are at your next 'tile'
-		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos /*&& CheckTarget (Vector3.right)*/) 
+		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos && CheckTarget (Vector3.right)) 
 		{
 			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			anim.SetInteger("state", 7);
 			pos += Vector3.right;
 
 		}
-		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos /*&& CheckTarget (Vector3.left)*/) 
+		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos && CheckTarget (Vector3.left)) 
 		{
 			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			anim.SetInteger("state", 5);
 			pos += Vector3.left;
 		}
-		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
+		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos && CheckTarget (Vector3.up)) 
 		{
 			anim.SetInteger("state", 4);
 			pos += Vector3.up;
 	
 		}
-		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos /*&& CheckTarget (Vector3.down)*/) 
+		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos && CheckTarget (Vector3.down)) 
 		{
 			anim.SetInteger("state", 6);
 			pos += Vector3.down;
@@ -105,18 +105,19 @@ public class Walking : MonoBehaviour
 		
 	}
 
-	private bool CheckTarget (Vector3 dir)
+	private bool CheckTarget (Vector3 dir3)
 	{
+		Vector2 dir = dir3;
 		RaycastHit2D obst;
 		obst = Physics2D.Raycast (transform.position, dir, 1F);
 		dist = obst.distance;
-		if (dist > 0.6F)
+		if (dist < 0.6F && dist >0.1F)
 		{
-			return true;
+			return false;
 		}
 		else
 		{
-			return false;
+			return true;
 		}
 	}
 
@@ -126,6 +127,12 @@ public class Walking : MonoBehaviour
 		{
 			cursor.Interact ();
 		}
+	}
+
+	public void Door2Door (Vector3 destination)
+	{
+		transform.position = destination;
+		pos = destination;
 	}
 }
 

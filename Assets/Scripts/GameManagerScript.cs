@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 	public static GameManagerScript control;
-	public Vector3 overworldPos;
+	public Vector2 overworldPos;
 	public bool exitMiniGame;
 
 	void Awake () {
@@ -19,7 +19,7 @@ public class GameManagerScript : MonoBehaviour {
 		}		exitMiniGame = false;	
 	}
 
-	public void setPos (Vector3 curPos)
+	public void setPos (Vector2 curPos)
 	{
 		overworldPos = curPos;
 	}
