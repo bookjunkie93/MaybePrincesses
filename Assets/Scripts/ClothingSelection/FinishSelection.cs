@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class FinishSelection : MonoBehaviour {
 	Image top;
@@ -19,8 +21,10 @@ public class FinishSelection : MonoBehaviour {
 
 	public void saveClothing() {
 //		PlayerPrefs.DeleteAll();
+		PlayerManager dataStore = GameObject.FindGameObjectWithTag("Clothing Data").GetComponent<PlayerManager>();
 		foreach(GameObject g in GameObject.FindGameObjectsWithTag("CharacterClothingItem")) {
 			if (g.activeInHierarchy && g.GetComponent<Image>().enabled) {
+				dataStore.AddItem(g.GetComponent<Image>().name, g.GetComponent<Image>().sprite,g.GetComponent<Image>().color);
 				PlayerPrefs.SetString(g.GetComponent<Image>().name, g.GetComponent<Image>().sprite.name);
 				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", g.GetComponent<Image>().color.r);
 				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", g.GetComponent<Image>().color.g);
@@ -28,6 +32,7 @@ public class FinishSelection : MonoBehaviour {
 
 				
 			} else {
+				dataStore.RemoveItem(g.GetComponent<Image>().name);
 				PlayerPrefs.SetString(g.GetComponent<Image>().name, "");
 				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "R", g.GetComponent<Image>().color.r);
 				PlayerPrefs.SetFloat(g.GetComponent<Image>().name + "G", g.GetComponent<Image>().color.g);
@@ -35,7 +40,6 @@ public class FinishSelection : MonoBehaviour {
 			}
 
 		}
-
 		PlayerPrefs.Save();
 	}
 }
