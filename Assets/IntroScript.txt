@@ -1,9 +1,8 @@
-0|Akila: How are you sleeping in, today of all days?  Come on!  Sophia and I are waiting.  I’d tell you to get dressed, but at this point you might as well just wait for Madam Prudencia to come and upgrade your wardrobe.  Oh, here she comes.  See you soon!|continue/1|cancel/2
-1|Prudencia: Good morning, dear.  Oh, so sorry, but could you remind me your name?|Enter Name/3|cancel/2
-2|Canceled|""/999
-3|“Prudencia: Of course, <player name>.  It’s coming back to me now.  Do hope that someone finds a treatment for memory loss by the time you’re as old as I am, <player name>.  But let’s not dawdle!  Show me to your wardrobe.”|continue/4
-4|“Prudencia: Now I’ll just use this key, and…”|continue/5
-5|“Prudencia: There!  Now you have access to the Academy’s full wardrobe system.  You will no longer need that old uniform. Now you may dress however you please!”|Customize/6
-6|“Prudencia: You look splendid.  I’ve got to be going, but you should prepare yourself for the trials.”|continue/7
-7|“Prudencia:  Good luck!”|OK/999
+0|Prudencia: Good morning, dear.  Oh, so sorry, but could you remind me your name?|Enter Name/2|cancel/1
+1|Canceled|""/999
+2|“Prudencia: Of course, <player name>.  It’s coming back to me now.  Do hope that someone finds a treatment for memory loss by the time you’re as old as I am, <player name>.  But let’s not dawdle!  Show me to your wardrobe.”|continue/3
+3|“Prudencia: Now I’ll just use this key, and…”|continue/4
+4|“Prudencia: There!  Now you have access to the Academy’s full wardrobe system.  You will no longer need that old uniform. Now you may dress however you please!”|Customize/5
+5|“Prudencia: You look splendid.  I’ve got to be going, but you should prepare yourself for the trials.”|continue/6
+6|“Prudencia:  Good luck!”|OK/999
 999|""|""/999

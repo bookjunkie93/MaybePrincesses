@@ -3,14 +3,14 @@ using System.Collections;
 
 public class PrudenciaPropagate : DialogCourier {
 
-	public void ResponsePropagate (int response)
+	public override void ResponsePropagate (int response)
 	{
 		/*switch (response)
 		{
-			case 3:
+			case 2:
 				//instantiate Name input field
-			case 5:
-				//load character selection
+			case 4:
+				Application.LoadLevel(4);
 			case 7: 
 				//remove DialogCanvas
 		}*/
