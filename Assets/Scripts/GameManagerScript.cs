@@ -23,6 +23,16 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		overworldPos = curPos;
 	}
-	
+
+	void OnLevelWasLoaded(int level) {
+		if (level == 0) {
+			PlayerManager dataStore = GameObject.FindGameObjectWithTag("Clothing Data").GetComponent<PlayerManager>();
+			if (dataStore == null) {
+				print ("no clothes set");
+			} else {
+
+			}
+		}
+	}
 	
 }
