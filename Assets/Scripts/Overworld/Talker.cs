@@ -10,6 +10,7 @@ public class Talker : MonoBehaviour
 	string dialogText;
 	public string noText;
 	bool proximity;
+	public bool cutscene;
 	public bool propagates;
 	public RectTransform dialogBox;
 	DialogNode current;
@@ -54,7 +55,7 @@ public class Talker : MonoBehaviour
 			for(int j = 2; j < vars.Length; j++)
 			{
 				string[] components = vars[j].Split('/');
-				Debug.Log("split components into " + components[0] + " and " + components[1]);
+				//Debug.Log("split components into " + components[0] + " and " + components[1]);
 				tempR = new DialogNode.response();
 				tempR.text = components[0].TrimStart('/');
 				tempR.goToNode = int.Parse (components[1].TrimStart('|'));
@@ -77,7 +78,10 @@ public class Talker : MonoBehaviour
 		boxText.text = dialogText;
 		CleanButtons();
 		AddResponses();
-		dialogBox.gameObject.SetActive(false);
+		if(!cutscene) 
+		{
+			dialogBox.gameObject.SetActive(false);
+		}
 	}
 	void CleanButtons()
 	{
@@ -120,8 +124,11 @@ public class Talker : MonoBehaviour
 	}	
 	void OnGUI ()
 	{
-		
-		if(/*proximity &&*/ Input.GetKeyUp("space"))
+		if (cutscene)
+		{
+			dialogBox.gameObject.SetActive(true);
+		}
+		else if(proximity && Input.GetKeyUp("space"))
 		{
 			dialogBox.gameObject.SetActive(true);
 		}
