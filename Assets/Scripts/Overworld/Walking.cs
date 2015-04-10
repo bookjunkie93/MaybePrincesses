@@ -111,7 +111,7 @@ public class Walking : MonoBehaviour
 			}
 		}
 
-		//Here you will move Towards the new position ...
+
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 		
 		
@@ -122,13 +122,10 @@ public class Walking : MonoBehaviour
 		Vector2 dir = dir3;
 		RaycastHit2D obst;
 		obst = Physics2D.Raycast (transform.position, dir, 1F);
-		dist = obst.distance;
-		if (dist < 0.6F && dist > 0.01F)
-		{
+
+		if (obst.collider != null && !obst.collider.isTrigger) {
 			return false;
-		}
-		else
-		{
+		} else {
 			return true;
 		}
 	}
