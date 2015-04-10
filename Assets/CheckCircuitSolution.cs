@@ -24,7 +24,7 @@ public class CheckCircuitSolution : MonoBehaviour {
 			if (solved == true) {
 				Debug.Log("win");
 				GUI.Label (rect, "You Won!");
-				EnterMiniGameREMOVETHISTEXT.instance.ReturnToOverworld();
+				EnterMiniGame.instance.ReturnToOverworld();
 			} else if (waiting == false){
 				Debug.Log("try again");
 				GUI.Label (rect, "Try Again");

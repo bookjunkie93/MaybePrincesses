@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
 
 	public void OnTriggerEnter2D (Collider2D collider)
 	{
+		Debug.Log("Door");
 		Walking.instance.Door2Door(dest);
 	}
 }

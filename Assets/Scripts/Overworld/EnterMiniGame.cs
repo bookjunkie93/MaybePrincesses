@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnterMiniGameREMOVETHISTEXT : MonoBehaviour
+public class EnterMiniGame : MonoBehaviour
 {
-	public static EnterMiniGameREMOVETHISTEXT instance;
+	public static EnterMiniGame instance;
 	public int gameNumber;
 
 	void Awake()
