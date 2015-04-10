@@ -26,7 +26,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (level == 0) {
-			PlayerManager dataStore = GameObject.FindGameObjectWithTag("Clothing Data").GetComponent<PlayerManager>();
+			GameObject dataStore = GameObject.FindGameObjectWithTag("Clothing Data");
 			if (dataStore == null) {
 				print ("no clothes set");
 			} else {
