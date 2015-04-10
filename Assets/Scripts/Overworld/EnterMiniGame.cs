@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnterMiniGame : MonoBehaviour {
+public class EnterMiniGame : MonoBehaviour
+{
 	public static EnterMiniGame instance;
 	public int gameNumber;
 
@@ -10,12 +11,15 @@ public class EnterMiniGame : MonoBehaviour {
 		instance = this;
 	}
 
-	public void OnTriggerEnter2D (Collider2D collider) {
+	public void OnTriggerEnter2D (Collider2D collider)
+	{
 		//save Player progress and location for re-loading after minigame
 		GameManagerScript.control.setPos(Walking.instance.transform.position);
 		Application.LoadLevel(gameNumber);
 	}
-	public void ReturnToOverworld () {
+
+	public void ReturnToOverworld ()
+	{
 		Application.LoadLevel(0);
 	}
 	//Create Save Game Helper function
