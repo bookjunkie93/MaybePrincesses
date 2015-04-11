@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 	public static GameManagerScript control;
+	public Vector2 currentPos;
 	public Vector2 overworldPos;
 	public bool exitMiniGame;
 
@@ -19,9 +20,13 @@ public class GameManagerScript : MonoBehaviour {
 		}		exitMiniGame = false;	
 	}
 
-	public void setPos (Vector2 curPos)
+	public void setPos (Vector2 newPos)
 	{
-		overworldPos = curPos;
+		currentPos = newPos;
+	}
+
+	public void saveOverworldPos (Vector2 oPos) {
+		overworldPos = oPos;
 	}
 
 	void OnLevelWasLoaded(int level) {

@@ -28,7 +28,7 @@ public class Walking : MonoBehaviour
 		//Here we set the Values from the current position	
 		anim = GetComponent<Animator>();
 
-		pos = GameManagerScript.control.overworldPos;
+		pos = GameManagerScript.control.currentPos;
 		transform.position = pos;
 		tr = transform;
 	}

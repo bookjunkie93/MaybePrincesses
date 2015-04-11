@@ -5,6 +5,7 @@ public class EnterMiniGame : MonoBehaviour
 {
 	public static EnterMiniGame instance;
 	public int gameNumber;
+	public Vector2 levelStartPos;
 
 	void Awake()
 	{
@@ -14,15 +15,14 @@ public class EnterMiniGame : MonoBehaviour
 	public void OnTriggerEnter2D (Collider2D collider)
 	{
 
-		if (gameNumber == 0) {
-			GameManagerScript.control.setPos(new Vector2(.5f, -3.85f));
-			ReturnToOverworld();
-		} else {
 			//save Player progress and location for re-loading after minigame
-			GameManagerScript.control.setPos(Walking.instance.transform.position);
-			Application.LoadLevel(gameNumber);
-
+		if (gameNumber != 0) {
+			GameManagerScript.control.saveOverworldPos(Walking.instance.transform.position);
 		}
+
+		GameManagerScript.control.setPos(levelStartPos);
+		Application.LoadLevel(gameNumber);
+
 	}
 
 	public void ReturnToOverworld ()
