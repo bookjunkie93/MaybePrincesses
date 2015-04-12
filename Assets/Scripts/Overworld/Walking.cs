@@ -10,6 +10,7 @@ public class Walking : MonoBehaviour
 	public float dist;
 
 	public Cursor cursor;
+	public GameObject player;
 
 	private float speed;
 	private Vector3 pos;
@@ -31,10 +32,12 @@ public class Walking : MonoBehaviour
 		pos = GameManagerScript.control.currentPos;
 		transform.position = pos;
 		tr = transform;
+
 	}
 	
 	void Update () 
 	{
+
 		Movement ();
 		GetSpeed ();
 		Interact ();
@@ -61,41 +64,68 @@ public class Walking : MonoBehaviour
 		
 		//But we Check if we are at the new Position, before we can add some more
 		//it will prevent to move before you are at your next 'tile'
+
 		if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) && tr.position == pos) 
 		{
-			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
-			anim.SetInteger("state", 7);
-			if (CheckTarget (Vector3.right))
-			{
-				pos += Vector3.right;
+
+			if (anim.GetInteger("state") != 7) {
+
+				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
+				anim.SetInteger("state", 7);
+			} else {
+				if (CheckTarget (Vector3.right) && !anim.IsInTransition(0))
+				{
+					pos += Vector3.right;
+				}
+
 			}
 
 		}
-		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos && CheckTarget (Vector3.left)) 
+		else if ((Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)) && tr.position == pos) 
 		{
-			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
-			anim.SetInteger("state", 5);
-			if (CheckTarget (Vector3.left))
-			{
-				pos += Vector3.left;
+
+			if (anim.GetInteger("state") != 5) {
+				transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
+				anim.SetInteger("state", 5);
+			} else {
+
+				if (CheckTarget (Vector3.left) && !anim.IsInTransition(0))
+				{
+					pos += Vector3.left;
+				}
 			}
 		}
-		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos && CheckTarget (Vector3.up)) 
+		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos) 
 		{
-			anim.SetInteger("state", 4);
-			if (CheckTarget (Vector3.up))
-			{
-				pos += Vector3.up;
+			if (anim.GetInteger("state") != 4) {
+				anim.SetInteger("state", 4);
+			} else {
+
+				if (CheckTarget (Vector3.up) && !anim.IsInTransition(0))
+				{
+					pos += Vector3.up;
+				}
 			}
 	
 		}
-		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos && CheckTarget (Vector3.down)) 
+		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos)
 		{
-			anim.SetInteger("state", 6);
-			if (CheckTarget (Vector3.down))
-			{
-				pos += Vector3.down;
+		
+
+			if (anim.GetInteger("state") != 6) {
+				anim.SetInteger("state", 6);
+			} else {
+
+				if (CheckTarget (Vector3.down) && !anim.IsInTransition(0))
+				{
+					pos += Vector3.down;
+				}
 			}
+
+		
+
+
+		
 		} 
 
 		if(!Input.anyKey) {

@@ -16,19 +16,27 @@ public class EnterMiniGame : MonoBehaviour
 	{
 
 			//save Player progress and location for re-loading after minigame
-		if (gameNumber != 0) {
-			GameManagerScript.control.saveOverworldPos(Walking.instance.transform.position);
-		}
 
-		GameManagerScript.control.setPos(levelStartPos);
-		Application.LoadLevel(gameNumber);
+		ReturnToLevel();
 
 	}
 
 	public void ReturnToOverworld ()
 	{
-
+		GameManagerScript.control.setPos(levelStartPos);
 		Application.LoadLevel(0);
+	}
+
+	public void ReturnToLevel ()
+	{
+		GameManagerScript.control.setPos(levelStartPos);
+		Application.LoadLevel(gameNumber);
+	}
+
+	public void ReturnToLevelWithoutPos ()
+	{
+
+		Application.LoadLevel(gameNumber);
 	}
 	//Create Save Game Helper function
 }
