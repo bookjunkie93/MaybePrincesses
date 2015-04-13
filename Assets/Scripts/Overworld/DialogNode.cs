@@ -31,6 +31,10 @@ public class DialogNode {
 	{
 		return prompt;
 	}
+	public void SetPrompt (string input)
+	{
+		prompt = input;
+	}
 	
 	public List<response> getResponses ()
 	{

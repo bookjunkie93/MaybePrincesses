@@ -5,6 +5,8 @@ public class GameManagerScript : MonoBehaviour {
 	public static GameManagerScript control;
 	public Vector2 currentPos;
 	public bool exitMiniGame;
+	//PlayerPrefs
+	public string playerName;
 
 	void Awake () {
 	
@@ -35,6 +37,14 @@ public class GameManagerScript : MonoBehaviour {
 
 			}
 		}
+	}
+	public void SetName(string name)
+	{
+		playerName = name;
+	}
+	public string GetName ()
+	{
+		return playerName;
 	}
 	
 }
