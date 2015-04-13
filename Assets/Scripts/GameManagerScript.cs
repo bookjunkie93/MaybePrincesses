@@ -3,8 +3,10 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 	public static GameManagerScript control;
-	public Vector3 overworldPos;
+	public Vector2 currentPos;
 	public bool exitMiniGame;
+	//PlayerPrefs
+	public string playerName;
 
 	void Awake () {
 	
@@ -19,10 +21,30 @@ public class GameManagerScript : MonoBehaviour {
 		}		exitMiniGame = false;	
 	}
 
-	public void setPos (Vector3 curPos)
+	public void setPos (Vector2 newPos)
 	{
-		overworldPos = curPos;
+		currentPos = newPos;
 	}
-	
+
+
+
+	void OnLevelWasLoaded(int level) {
+		if (level == 0) {
+			GameObject dataStore = GameObject.FindGameObjectWithTag("Clothing Data");
+			if (dataStore == null) {
+				print ("no clothes set");
+			} else {
+
+			}
+		}
+	}
+	public void SetName(string name)
+	{
+		playerName = name;
+	}
+	public string GetName ()
+	{
+		return playerName;
+	}
 	
 }

@@ -10,6 +10,7 @@ public class Talker : MonoBehaviour
 	string dialogText;
 	public string noText;
 	bool proximity;
+	public bool cutscene;
 	public bool propagates;
 	public RectTransform dialogBox;
 	DialogNode current;
@@ -36,6 +37,23 @@ public class Talker : MonoBehaviour
 		UpdateCurrent();
 		spriteFace.sprite = charSprite;
 	}
+
+	public void UpdatePersistents(int node)
+	{
+		dialogTree[node].SetPrompt(AddPersistentText(dialogTree[node].getPrompt()));
+		UpdateCurrent();
+	}
+
+	string AddPersistentText (string text)
+	{	
+		string retval;
+		if(GameManagerScript.control.playerName == "")
+		{
+			return text;
+		}
+		retval = text.Replace("[name]", GameManagerScript.control.playerName);
+		return retval;
+	}
 	void ParseText ()
 	{
 		int num;
@@ -51,11 +69,12 @@ public class Talker : MonoBehaviour
 			string [] vars = nodes[i].Split('|');
 			num = int.Parse (vars[0].Trim ('|'));
 			prompt = vars [1].Trim('|');
+			prompt = AddPersistentText(vars[1]);
 			for(int j = 2; j < vars.Length; j++)
 			{
 				string[] components = vars[j].Split('/');
-				Debug.Log("split components into " + components[0] + " and " + components[1]);
-				tempR = new DialogNode.response();
+				//Debug.Log("split components into " + components[0] + " and " + components[1]);
+				tempR = new DialogNode.response();	
 				tempR.text = components[0].TrimStart('/');
 				tempR.goToNode = int.Parse (components[1].TrimStart('|'));
 				rList.Add(tempR);
@@ -70,14 +89,17 @@ public class Talker : MonoBehaviour
 		current = dialogTree[node];
 		UpdateCurrent();
 	}
-	void UpdateCurrent()
+	public void UpdateCurrent()
 	{
 		dialogText = current.getPrompt();
 		responses = current.getResponses();
 		boxText.text = dialogText;
 		CleanButtons();
 		AddResponses();
-		dialogBox.gameObject.SetActive(false);
+		if(!cutscene) 
+		{
+			dialogBox.gameObject.SetActive(false);
+		}
 	}
 	void CleanButtons()
 	{
@@ -120,8 +142,11 @@ public class Talker : MonoBehaviour
 	}	
 	void OnGUI ()
 	{
-		
-		if(/*proximity &&*/ Input.GetKeyUp("space"))
+		if (cutscene)
+		{
+			dialogBox.gameObject.SetActive(true);
+		}
+		else if(proximity && Input.GetKeyUp("space"))
 		{
 			dialogBox.gameObject.SetActive(true);
 		}
