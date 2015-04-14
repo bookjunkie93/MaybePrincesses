@@ -18,6 +18,9 @@ public class Walking : MonoBehaviour
 
 	private Animator anim;
 
+	public Queue prevPositions = new Queue();
+	Vector3 lastPosition;
+
 
 	void Awake()
 	{
@@ -33,6 +36,9 @@ public class Walking : MonoBehaviour
 		transform.position = pos;
 		tr = transform;
 
+		lastPosition = transform.position;
+		prevPositions.Enqueue (transform.position);
+		prevPositions.Enqueue (transform.position);
 	}
 	
 	void Update () 
@@ -41,6 +47,15 @@ public class Walking : MonoBehaviour
 		Movement ();
 		GetSpeed ();
 		Interact ();
+
+
+		if (lastPosition != transform.position) {
+			prevPositions.Enqueue (transform.position);
+			if (prevPositions.Count >= 25) {
+				prevPositions.Dequeue();
+			}
+		}
+		lastPosition = transform.position;
 	
 	}
 
