@@ -46,28 +46,28 @@ public class DogbotMovement : MonoBehaviour {
 					if (commands [i] == "Up") {
 							//				Debug.Log(i);
 //							Debug.Log (commands [i]);
-							transform.position += Vector3.up * Time.deltaTime * 4000;
+							transform.position += Vector3.up * Time.deltaTime * 4096;
 //							Debug.Log (transform.position);
 							call = false;
 //							StartCoroutine (Wait ());
 					} else if (commands [i] == "Down") {
 							//				Debug.Log(i);
 //							Debug.Log (commands [i]);
-							transform.position += Vector3.down * Time.deltaTime * 4000;
+							transform.position += Vector3.down * Time.deltaTime * 4096;
 //							Debug.Log (transform.position);
 							call = false;
 //							StartCoroutine (Wait ());
 					} else if (commands [i] == "Left") {
 							//				Debug.Log(i);
 //							Debug.Log (commands [i]);
-							transform.position += Vector3.left * Time.deltaTime * 4000;
+							transform.position += Vector3.left * Time.deltaTime * 4096;
 //							Debug.Log (transform.position);
 							call = false;
 //							StartCoroutine (Wait ());
 					} else if (commands [i] == "Right") {
 							//				Debug.Log(i);
 //							Debug.Log (commands [i]);
-							transform.position += Vector3.right * Time.deltaTime * 4000;
+							transform.position += Vector3.right * Time.deltaTime * 4096;
 //							Debug.Log (transform.position);
 							call = false;
 //							StartCoroutine (Wait ());
