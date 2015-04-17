@@ -7,6 +7,8 @@ public class Sheep2 : MonoBehaviour {
 	int i = 0;
 	bool call = true;
 	public static Sheep2 sheep2_instance;
+	Vector3 lastPos;
+
 	
 	void Awake () {
 		sheep2_instance = this;
@@ -14,12 +16,22 @@ public class Sheep2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		lastPos = transform.position;
+		//		Debug.Log (transform.position);
 //		startingPosition = transform.position;
 	}
 
 	IEnumerator Wait() {
 		yield return new WaitForSeconds(1);
 		call = true;
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.name == "gate") {
+			Destroy(gameObject);
+			ExecuteCode.numOfSheep--;
+		}
 	}
 	
 	// Update is called once per frame
@@ -48,29 +60,46 @@ public class Sheep2 : MonoBehaviour {
 		
 	}
 	
-	public void BarkedAt (Vector3 dogpos) {
+	public void KickedAt (Vector3 dogpos) {
+		lastPos = transform.position;
+
 		if (dogpos.x <= transform.position.x) {
-			if (dogpos.y <= transform.position.y) {
-				transform.position += Vector3.up * (Time.deltaTime) * 4000;
-				transform.position += Vector3.right * (Time.deltaTime) * 4000;
-			} else {
-				transform.position += Vector3.down * (Time.deltaTime) * 4000;
-				transform.position += Vector3.right * (Time.deltaTime) * 4000;
-			}
+			transform.position += Vector3.right * (Time.deltaTime) * 4096;
 		} else {
-			if (dogpos.y <= transform.position.y) {
-				transform.position += Vector3.up * (Time.deltaTime) * 4000;
-				transform.position += Vector3.left * (Time.deltaTime) * 4000;
-			} else {
-				transform.position += Vector3.down * (Time.deltaTime) * 4000;
-				transform.position += Vector3.left * (Time.deltaTime) * 4000;
-			}
+			transform.position += Vector3.left * (Time.deltaTime) * 4096;
 		}
+		
+		if (dogpos.y <= transform.position.y) {
+			transform.position += Vector3.up * (Time.deltaTime) * 4096;
+		} else {
+			transform.position += Vector3.right * (Time.deltaTime) * 4096;
+		}
+
+
+//		if (dogpos.x <= transform.position.x) {
+//			if (dogpos.y <= transform.position.y) {
+//				transform.position += Vector3.up * (Time.deltaTime) * 4096;
+//				transform.position += Vector3.right * (Time.deltaTime) * 4096;
+//			} else {
+//				transform.position += Vector3.down * (Time.deltaTime) * 4096;
+//				transform.position += Vector3.right * (Time.deltaTime) * 4096;
+//			}
+//		} else {
+//			if (dogpos.y <= transform.position.y) {
+//				transform.position += Vector3.up * (Time.deltaTime) * 4096;
+//				transform.position += Vector3.left * (Time.deltaTime) * 4096;
+//			} else {
+//				transform.position += Vector3.down * (Time.deltaTime) * 4096;
+//				transform.position += Vector3.left * (Time.deltaTime) * 4096;
+//			}
+//		}
 		checkForDeletion ();
+		checkPos ();
 //		Debug.Log (transform.position);
 	}
 	
-	public void KickedAt (Vector3 dogpos) {
+	public void BarkedAt (Vector3 dogpos) {
+		lastPos = transform.position;
 		if (dogpos.x <= transform.position.x) {
 			if (dogpos.y <= transform.position.y) {
 				transform.position += Vector3.up * (Time.deltaTime) * 2000;
@@ -89,36 +118,49 @@ public class Sheep2 : MonoBehaviour {
 			}
 		}
 		checkForDeletion ();
+		checkPos ();
 //		Debug.Log (transform.position);
 	}
 	
 	public void JumpedAt (Vector3 dogpos) {
+		lastPos = transform.position;
+
+//		Debug.Log ("jump");
+
+
 		if (dogpos.x >= transform.position.x) {
 			if (dogpos.y >= transform.position.y) {
-				transform.position += Vector3.up * (Time.deltaTime) * 4000;
-				transform.position += Vector3.right * (Time.deltaTime) * 4000;
+				transform.position += Vector3.up * (Time.deltaTime) * 4096;
+				transform.position += Vector3.right * (Time.deltaTime) * 4096;
 			} else {
-				transform.position += Vector3.down * (Time.deltaTime) * 4000;
-				transform.position += Vector3.right * (Time.deltaTime) * 4000;
+				transform.position += Vector3.down * (Time.deltaTime) * 4096;
+				transform.position += Vector3.right * (Time.deltaTime) * 4096;
 			}
 		} else {
 			if (dogpos.y >= transform.position.y) {
-				transform.position += Vector3.up * (Time.deltaTime) * 4000;
-				transform.position += Vector3.left * (Time.deltaTime) * 4000;
+				transform.position += Vector3.up * (Time.deltaTime) * 4096;
+				transform.position += Vector3.left * (Time.deltaTime) * 4096;
 			} else {
-				transform.position += Vector3.down * (Time.deltaTime) * 4000;
-				transform.position += Vector3.left * (Time.deltaTime) * 4000;
+				transform.position += Vector3.down * (Time.deltaTime) * 4096;
+				transform.position += Vector3.left * (Time.deltaTime) * 4096;
 			}
 		}
 		checkForDeletion ();
+		checkPos ();
 //		Debug.Log (transform.position);
 	}
 	
 	void checkForDeletion() {
-		if (transform.position.x >= 450 && transform.position.x <= 650 && transform.position.y >= 100 && transform.position.y <= 250) {
-//			Debug.Log ("deleting");
+		if (transform.position.x >= 345 && transform.position.x <= 565 && transform.position.y >= 131 && transform.position.y <= 225) {
+			//			Debug.Log ("deleting");
 			Destroy(gameObject);
 			ExecuteCode.numOfSheep--;
+		}
+	}
+
+	void checkPos(){
+		if (transform.position.x >= 887 || transform.position.x <= -2.2 || transform.position.y >= 657 || transform.position.y <= 147) {
+			transform.position = lastPos;
 		}
 	}
 }

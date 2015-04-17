@@ -6,6 +6,9 @@ public class DogbotMovement : MonoBehaviour {
 	public static GameObject movingDogbot;
 	public static DogbotMovement dogbot_instance;
 	static bool codeGameWon;
+	Vector3 lastPos;
+
+	public int score;
 
 	void Awake () {
 		dogbot_instance = this;
@@ -15,6 +18,8 @@ public class DogbotMovement : MonoBehaviour {
 	void Start () {
 		movingDogbot = gameObject;
 		codeGameWon = false;
+		lastPos = transform.position;
+		score = 0;
 	}
 	
 //	// Update is called once per frame
@@ -24,8 +29,26 @@ public class DogbotMovement : MonoBehaviour {
 
 
 	public void resetDogbot() {
-		Vector3 newPos = new Vector3((float)43.8, (float)190.9, (float)0.0);
+		score = 0;
+		if (ExecuteCode.numOfSheep == 2) {
+			score += 10;
+		} else if (ExecuteCode.numOfSheep == 1) {
+			score += 10;
+		}
+		Vector3 newPos = new Vector3((float)69.6, (float)203.3, (float)0.0);
 		transform.position = newPos;
+		Vector3 s1pos = new Vector3((float)552.5, (float)469.6, (float)0.0);
+		Vector3 s2pos = new Vector3((float)272.9, (float)328.2, (float)0.0);
+		Vector3 s3pos = new Vector3((float)758.0, (float)331.5, (float)0.0);
+		if (Sheep1.sheep1_instance) {
+			Sheep1.sheep1_instance.transform.position = s1pos;
+		}
+		if (Sheep2.sheep2_instance) {
+			Sheep2.sheep2_instance.transform.position = s2pos;
+		}
+		if (Sheep3.sheep3_instance) {
+			Sheep3.sheep3_instance.transform.position = s3pos;
+		}
 	}
 
 	//	Vector3 startingPosition;
@@ -43,6 +66,7 @@ public class DogbotMovement : MonoBehaviour {
 
 		while (i < commands.Length) {
 //			if (call) {
+			lastPos = transform.position;
 					if (commands [i] == "Up") {
 							//				Debug.Log(i);
 //							Debug.Log (commands [i]);
@@ -115,15 +139,31 @@ public class DogbotMovement : MonoBehaviour {
 							}
 					}
 					i++;
+					score++;
 					yield return null; //wait for a frame
 					yield return new WaitForSeconds(1);
 					if (ExecuteCode.numOfSheep == 0) {
 				// END GAME
 						codeGameWon = true;
+				Debug.Log (score);
+						if (score <= 20) {
+							GameManagerScript.control.codeGameScore = 1;
+						} else if (score <= 30) {
+							GameManagerScript.control.codeGameScore = 2;
+						} else {
+							GameManagerScript.control.codeGameScore = 3;
+						}
 //						Debug.Log ("end game");
 					}
+			checkPos();
 //				}
 			}
+	}
+
+	void checkPos(){
+		if (transform.position.x >= 887 || transform.position.x <= -2.2 || transform.position.y >= 657 || transform.position.y <= 147) {
+			transform.position = lastPos;
+		}
 	}
 
 	void OnGUI() 

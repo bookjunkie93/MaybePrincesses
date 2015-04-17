@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour {
 	public bool exitMiniGame;
 	//PlayerPrefs
 	public string playerName;
+	public int codeGameScore;
 
 	void Awake () {
 	
