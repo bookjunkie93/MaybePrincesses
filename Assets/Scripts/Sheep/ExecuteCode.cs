@@ -17,6 +17,7 @@ public class ExecuteCode : MonoBehaviour {
 	}
 
 	public void initCode () {
+		DogbotMovement.dogbot_instance.score += 10;
 		string[] commands = new string[36];
 		int location = 0;
 //		Debug.Log ("here");
@@ -74,6 +75,6 @@ public class ExecuteCode : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+//		Debug.Log (numOfSheep);
 	}
 }
