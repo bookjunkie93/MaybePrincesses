@@ -30,11 +30,11 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 			GameObject item = slotTransform.GetComponent<Slot>().item;
 			//if there is an item in the slot
 			if (item){
-				Debug.Log("item in" + i + ", " + j);
+			//	Debug.Log("item in" + i + ", " + j);
 				string name = item.name;
 				if (name == "Horizontal Wire"){
 					grid[i,j] = 1;
-					Debug.Log("horizontal wire");
+				//	Debug.Log("horizontal wire");
 				}
 				else if (name == "Vertical Wire"){
 					grid[i,j] = 2;
@@ -51,13 +51,13 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 				else if (name == "Corner Left Up"){
 					grid[i,j] = 6;
 				}
-				else if (name == "Lightbulb"){
+				else if (name == "Light bulb"){
 					grid[i,j] = 7;
-					Debug.Log("bulb");
+				//	Debug.Log("bulb");
 				}
 				else if (name == "Battery"){
 					grid[i,j] = 8;
-					Debug.Log("battery");
+				//	Debug.Log("battery");
 				}
 			}
 			else {
@@ -92,6 +92,7 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				cur = grid[i,j];
+				Debug.Log("cur: " + cur + " i: " + i + " j: " + j);
 				//need to check left and right
 				if ((cur == 1) || (cur == 7) || (cur == 8)){
 					//at the edge
@@ -144,19 +145,19 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 				else if (cur == 4){
 				//at the edge
 					if((j == (y-1)) || (i == (x-1))){
-						Debug.Log("edge");
+					//	Debug.Log("edge");
 						return false;
 					}
 					below = grid[i, j+1];
 					//if below doesn't match up
 					if ((below == 1) || (below == 4) || (below == 5) || (below == 7) || (below == 8) || (below == -1)){
-						Debug.Log("below:" + below + " doesn't match");
+					//	Debug.Log("below:" + below + " doesn't match");
 						return false;
 					}
 					right = grid[i+1, j];
 					//if right doesn't match up
 					if ((right == 2) || (right == 3) || (right == 4) || (right == -1)){
-						Debug.Log("right doesn't match");
+					//	Debug.Log("right doesn't match");
 						return false;
 					}
 				}
@@ -194,6 +195,7 @@ public class CircuitBoard : MonoBehaviour, IHasChanged {
 				}
 			}
 		}
+		Debug.Log("true");
 			return true;
 	}
 
