@@ -6,14 +6,11 @@ public class Follower1 : MonoBehaviour {
 	public static Follower1 instance;
 	
 	Transform target; //the enemy's target 
-	//	float moveSpeed = 8F; //move speed 
-	//	float rotationSpeed = 3F; //speed of turning
 	public float distance;
-	//	Quaternion perp = new Quaternion (0f, 0f, 0f, 1f);
-	//	static int rerotate;
 	Vector3 lastPosition;
 	
 	public Queue prevPositions = new Queue();
+	public Queue prevDirections = new Queue ();
 	
 	Transform myTransform; //current transform data of this enemy
 	
@@ -29,24 +26,26 @@ public class Follower1 : MonoBehaviour {
 		lastPosition = transform.position;
 		
 		prevPositions.Enqueue (transform.position);
-		prevPositions.Enqueue (transform.position);
-		prevPositions.Enqueue (transform.position);
+		//prevDirections.Enqueue (anim.GetInteger("state"));
 	}
 	
 	void Update () { 
 		//		Debug.Log ("UPDATING");
-		//rotate to look at the player 
-		distance =Vector3.Distance(transform.position,target.position);
+		distance = Vector3.Distance(transform.position,target.position);
 		int count = Walking.instance.prevPositions.Count;
 		
 		if (lastPosition != transform.position) {
 			prevPositions.Enqueue (transform.position);
+//			prevDirections.Enqueue (anim.GetInteger("state"));
 		}
 		lastPosition = transform.position;
 		
 		if (distance > 0.75) {
 			if (count != 0) {
 				myTransform.position = (Vector3) Walking.instance.prevPositions.Dequeue();
+				int dir = (int)Walking.instance.prevDirections.Dequeue();
+				Debug.Log (dir);
+//				anim.SetInteger();
 			}
 		}
 		

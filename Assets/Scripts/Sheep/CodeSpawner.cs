@@ -1,117 +1,100 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
+using System.Collections;
 
-public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-	public static GameObject itemBeingDragged;
+public class CodeSpawner : MonoBehaviour {
 	GameObject itemClicked;
-	Vector3 startPosition;
-	Transform startParent;
-	//	public GameObject Up;
-	bool spawn = false;
-
-//	bool upPres = false;
-//	bool downPres = false;
-//	bool leftPres = false;
-//	bool rightPres = false;
-//	bool lurePres = false;
-//	bool kickPres = false;
-	
 	[SerializeField] Transform slots;
+	bool spawn = false;
+	bool waiting = true;
+
+
+	// Use this for initialization
+	void Start () {
 	
-	void OnMouseOver() {
-		Debug.Log (gameObject.name);
+	}
+
+	IEnumerator Wait() {
+		Debug.Log("Before Waiting 2 seconds");
+		yield return new WaitForSeconds(2);
+		Debug.Log("After Waiting 2 Seconds");
+		waiting = true;
 	}
 	
-	void OnMouseDown() {
-		Debug.Log ("moused down");
-		itemClicked = gameObject;
-		bool placed = false;
-		slots = GameObject.FindWithTag ("ExecutedCode").transform;
+	// Update is called once per frame
+	void Update () {
+		CheckButtonDown ();
+	}
+
+	void CheckButtonDown () {
+		if (waiting) {
+			bool placed = false;
+			bool pressed = false;
+			slots = GameObject.FindWithTag ("ExecutedCode").transform;
 		
-		foreach (Transform slotTransform in slots) {
-			GameObject item = slotTransform.GetComponent<Slot1>().item;
-			if (!item){
-				Debug.Log ("no item");
-				itemClicked.transform.SetParent(slotTransform);
-				placed = true;
-				break;
-				//				Debug.Log(item.name);
+			if (Input.GetKey (KeyCode.UpArrow)) {
+				itemClicked = GameObject.Find ("Up");
+				pressed = true;
 			}
+			if (Input.GetKey (KeyCode.DownArrow)) {
+				itemClicked = GameObject.Find ("Down");
+				pressed = true;
+			}
+			if (Input.GetKey (KeyCode.LeftArrow)) {
+				itemClicked = GameObject.Find ("Left");
+				pressed = true;
+			}
+			if (Input.GetKey (KeyCode.RightArrow)) {
+				itemClicked = GameObject.Find ("Right");
+				pressed = true;
+			}
+			if (Input.GetKey (KeyCode.L)) {
+				itemClicked = GameObject.Find ("Jump");
+				pressed = true;
+			}
+			if (Input.GetKey (KeyCode.K)) {
+				itemClicked = GameObject.Find ("Kick");
+				pressed = true;
+			}
+		
+			if (pressed) {
+				foreach (Transform slotTransform in slots) {
+					GameObject item = slotTransform.GetComponent<Slot1> ().item;
+					if (!item) {
+						//					Debug.Log ("no item");
+						itemClicked.transform.SetParent (slotTransform);
+						placed = true;
+						break;
+						//				Debug.Log(item.name);
+					}
+				
+				}
 			
-		}
-		
-		if (placed) {
-			if (spawn == false && itemClicked.name == "Up"){
-				spawnUp();
-			} else if (spawn == false && itemClicked.name == "Down"){
-				spawnDown();
-			} else if (spawn == false && itemClicked.name == "Left"){
-				spawnLeft();
-			} else if (spawn == false && itemClicked.name == "Right"){
-				spawnRight();
-			} else if (spawn == false && itemClicked.name == "Jump"){
-				spawnJump();
-			} else if (spawn == false && itemClicked.name == "Kick"){
-				spawnKick();
-			} else if (spawn == false && itemClicked.name == "Bark"){
-				spawnBark();
+				if (placed) {
+					Debug.Log ("placed");
+					if (spawn == false && itemClicked.name == "Up") {
+						spawnUp ();
+					} else if (spawn == false && itemClicked.name == "Down") {
+						spawnDown ();
+					} else if (spawn == false && itemClicked.name == "Left") {
+						spawnLeft ();
+					} else if (spawn == false && itemClicked.name == "Right") {
+						spawnRight ();
+					} else if (spawn == false && itemClicked.name == "Jump") {
+						spawnJump ();
+					} else if (spawn == false && itemClicked.name == "Kick") {
+						spawnKick ();
+					} else if (spawn == false && itemClicked.name == "Bark") {
+						spawnBark ();
+					}
+				}
 			}
+			waiting = false;
+			StartCoroutine (Wait ());
 		}
-	}
-	
-	void Update() {
 	}
 
-
-	
-	#region IBeginDragHandler implementation
-	
-	public void OnBeginDrag (PointerEventData eventData)
-	{
-		itemBeingDragged = gameObject;
-		startPosition = transform.position;
-		startParent = transform.parent;
-		GetComponent<CanvasGroup> ().blocksRaycasts = false;
-	}
-	#endregion
-	
-	
-	#region IEndDragHandler implementation
-	
-	public void OnEndDrag (PointerEventData eventData)
-	{
-		GetComponent<CanvasGroup> ().blocksRaycasts = true;
-		if (transform.parent == startParent) {
-			transform.position = startPosition;
-		} else {
-			if (spawn == true && transform.parent.name == "Trash") {
-				Destroy(DragHandler.itemBeingDragged);
-			}
-			if (spawn == false && itemBeingDragged.name == "Up"){
-				spawnUp();
-			} else if (spawn == false && itemBeingDragged.name == "Down"){
-				spawnDown();
-			} else if (spawn == false && itemBeingDragged.name == "Left"){
-				spawnLeft();
-			} else if (spawn == false && itemBeingDragged.name == "Right"){
-				spawnRight();
-			} else if (spawn == false && itemBeingDragged.name == "Jump"){
-				spawnJump();
-			} else if (spawn == false && itemBeingDragged.name == "Kick"){
-				spawnKick();
-			} else if (spawn == false && itemBeingDragged.name == "Bark"){
-				spawnBark();
-			}
-		}
-	}
-	
-	#endregion
-	
-	#region IDragHandler implementation
-	
 	void spawnUp () {
-//		Debug.Log("up spawning");
+		//		Debug.Log("up spawning");
 		GameObject myObj = Instantiate(Resources.Load ("Up")) as GameObject;
 		myObj.transform.SetParent (GameObject.Find("Up Slot").transform);
 		//get position of parent
@@ -205,11 +188,4 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 			Destroy(DragHandler.itemBeingDragged);
 		}
 	}
-	
-	public void OnDrag (PointerEventData eventData)
-	{
-		transform.position = Input.mousePosition;
-	}
-	
-	#endregion
 }

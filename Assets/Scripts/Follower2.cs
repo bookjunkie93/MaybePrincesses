@@ -29,6 +29,9 @@ public class Follower2: MonoBehaviour {
 		if (distance > 0.75) {
 			if (count != 0) {
 				transform.position = (Vector3) Follower1.instance.prevPositions.Dequeue();
+//				int dir = (int) Follower1.instance.prevDirections.Dequeue();
+//				Debug.Log (dir);
+//				anim.SetInteger ("state", dir);
 			}
 			
 			//			Vector3 vectorToTarget = target.position - myTransform.position;
