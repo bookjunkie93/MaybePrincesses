@@ -76,6 +76,7 @@ public class Talker : MonoBehaviour
 				//Debug.Log("split components into " + components[0] + " and " + components[1]);
 				tempR = new DialogNode.response();	
 				tempR.text = components[0].TrimStart('/');
+				Debug.Log (components[1].ToString());
 				tempR.goToNode = int.Parse (components[1].TrimStart('|'));
 				rList.Add(tempR);
 			}

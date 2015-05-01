@@ -31,7 +31,6 @@ public class Walking : MonoBehaviour
 		//Here we set the Values from the current position	
 		anim = GetComponent<Animator>();
 
-		pos = GameManagerScript.control.overworldPos;
 		if (GameManagerScript.control.currentPos == new Vector2(0f, 0f)) {
 			GameManagerScript.control.currentPos = new Vector2(-0.5f, 0f);
 		}
@@ -150,6 +149,11 @@ public class Walking : MonoBehaviour
 		{
 			cursor.Interact ();
 		}
+	}
+	public void Door2Door (Vector3 destination)
+	{
+		transform.position = destination;
+		pos = destination;
 	}
 }
 
