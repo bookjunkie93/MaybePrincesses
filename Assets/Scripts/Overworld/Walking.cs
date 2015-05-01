@@ -31,14 +31,11 @@ public class Walking : MonoBehaviour
 		//Here we set the Values from the current position	
 		anim = GetComponent<Animator>();
 
-<<<<<<< HEAD
 		pos = GameManagerScript.control.overworldPos;
-=======
 		if (GameManagerScript.control.currentPos == new Vector2(0f, 0f)) {
 			GameManagerScript.control.currentPos = new Vector2(-0.5f, 0f);
 		}
 		pos = GameManagerScript.control.currentPos;
->>>>>>> caaadee27299b63f5783dece9524fa415e90e442
 		transform.position = pos;
 		tr = transform;
 
@@ -53,12 +50,10 @@ public class Walking : MonoBehaviour
 		GetSpeed ();
 		Interact ();
 
-<<<<<<< HEAD
 		if (lastPosition != transform.position) {
 			prevPositions.Enqueue (transform.position);
 		}
 		lastPosition = transform.position;
-=======
 
 		if (lastPosition != transform.position) {
 			prevPositions.Enqueue (transform.position);
@@ -68,7 +63,6 @@ public class Walking : MonoBehaviour
 		}
 		lastPosition = transform.position;
 	
->>>>>>> caaadee27299b63f5783dece9524fa415e90e442
 	}
 
 	private void GetSpeed ()

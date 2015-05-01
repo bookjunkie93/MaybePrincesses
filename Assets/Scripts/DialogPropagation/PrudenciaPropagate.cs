@@ -24,12 +24,9 @@ public class PrudenciaPropagate : DialogCourier {
 				Talker.instance.UpdatePersistents(2);
 				break;
 				//instantiate Name input field
-			case 4:
+			case 999:
 				Application.LoadLevel(4);
 				break;
-			case 7: 
-				break;
-				//remove DialogCanvas
 		}
 	}	
 }
