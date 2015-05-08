@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-class ClothingItem {
+public class ClothingItem {
 	string itemName;
 	Sprite itemSprite;
 	Color itemColor;
@@ -42,7 +42,7 @@ class ClothingItem {
 
 public class PlayerManager : MonoBehaviour {
 	public static PlayerManager self;
-	List<ClothingItem> items;
+	public List<ClothingItem> items;
 
 	void Awake () {
 		if (self == null)

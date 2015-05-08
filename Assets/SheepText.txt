@@ -1,0 +1,6 @@
+0|“Cady: Why hello, dear.  You must be here for your trials.  I can tell because you're just radiating that good ol' princess spirit.“|continue/1
+1|“Cady: We're in a touch o' trouble out on the pasture here.  Our sheepdog-bot just up and broke.  Full of more bugs than a honey ham left outside on a hot day in July!“|continue/2
+2|“Cady: Here's hoping you can help us out.  Just drag commands into the bot's command grid in the order you want them to happen, and it'll do whatever you say.”|continue/3
+3|“Cady: Feel free to play around with the commands to figure out how everything works.  Once you've got your bearings, try to get all those sheep into their pen.|continue/4
+4|”Have fun!”|OK/999
+999|""|""/999

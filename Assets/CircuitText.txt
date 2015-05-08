@@ -1,0 +1,6 @@
+0|“Mallory: Hello.  You are here to help, as part of the princess trials, yes?  This is good.“|continue/1
+1|“Mallory: The circuitry in this building has suddenly become faulty.  It is non-functional, and must be reconnected.  I am glad to have your expertise.“|continue/2
+2|“Mallory: Drag the circuit components on to the grid to fix the circuit.  In order for the circuit to work, wires must connect one end of the battery to the lightbulb, and the other end of the lightbulb back to the other end of the battery.”|continue/3
+3|“Mallory: This way, the current can flow through the circuit, out of the battery, into the lightbulb, and back into the battery.|continue/4
+4|”Thank you for this important service.  Your efforts will be greatly appreciated.”|OK/999
+999|""|""/999

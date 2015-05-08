@@ -8,6 +8,9 @@ public class GameManagerScript : MonoBehaviour {
 	//PlayerPrefs
 	public string playerName;
 	public int codeGameScore;
+	public bool sheepIntro;
+	public bool circuitIntro;
+	public bool antagonistIntro;
 
 	void Awake () {
 	
@@ -15,11 +18,15 @@ public class GameManagerScript : MonoBehaviour {
 		{
 			DontDestroyOnLoad(this.gameObject);
 			control = this;
+			sheepIntro = false;
+			circuitIntro = false;
+			antagonistIntro = false;
 		}
 		else if (control != this)
 		{
 			Destroy (this.gameObject);
-		}		exitMiniGame = false;	
+		}		
+		exitMiniGame = false;	
 	}
 
 	public void setPos (Vector2 newPos)
@@ -30,12 +37,35 @@ public class GameManagerScript : MonoBehaviour {
 
 
 	void OnLevelWasLoaded(int level) {
-		if (level == 0) {
-			GameObject dataStore = GameObject.FindGameObjectWithTag("Clothing Data");
-			if (dataStore == null) {
+		if (level < 2) {
+			GameObject data = GameObject.FindGameObjectWithTag("Clothing Data");
+			if (data == null) {
 				print ("no clothes set");
 			} else {
+				print ("setting colors");
+				PlayerManager dataStore = data.GetComponent<PlayerManager>();
+				GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
+				foreach(ClothingItem c in dataStore.items) {
+					for(int i = 0; i < playerObj.transform.childCount; i++) {
+						GameObject child = playerObj.transform.GetChild(i).gameObject;
+						SpriteRenderer s = child.GetComponent<SpriteRenderer>();
+						ItemName n = child.GetComponent<ItemName>();
+						if (n != null) {		
+							if (n.name == c.getName()) {
+								s.color = c.getColor();
+							}
+
+						}
+					}
+				}
+			}
+		}
+		if (level == 0)
+		{
+			if((sheepIntro && circuitIntro)&&(!antagonistIntro))
+			{
+				Application.LoadLevel(10);
 			}
 		}
 	}
@@ -43,6 +73,7 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		playerName = name;
 	}
+
 	public string GetName ()
 	{
 		return playerName;
