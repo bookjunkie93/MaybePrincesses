@@ -1,6 +1,6 @@
 0|“Prudencia: Oh!  [name], there you are!“|continue/1
 1|“Prudencia: It seems someone has been sabotaging the trials, trying to make them harder than they should be.“|continue/2
 2|“Prudencia: Was that her?  This is tricky...”|continue/3
-3|”PruDencia: Well, not to worry.  I'll take care of her.  You may continue to help out around here if you want, but you have certainly proven yourself today.”|continue/4
+3|”Prudencia: Well, not to worry.  I'll take care of her.  You may continue to help out around here if you want, but you have certainly proven yourself today.”|continue/4
 4|”Prudencia: Thank you, [name].”|OK/999
 999|""|""/999

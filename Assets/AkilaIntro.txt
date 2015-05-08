@@ -1,5 +1,5 @@
 0|Akila: How are you sleeping in, today of all days?|continue/1 
-1|Come on!  Sophia and I are waiting.|continue/2|back/0
+1|Come on! We’re waiting.|continue/2|back/0
 2|I’d tell you to get dressed, but at this point you might as well just wait for Madam Prudencia to come and upgrade your wardrobe.|continue/3|back/1
 3|Oh, here she comes.  See you soon!|continue/999|back/2
 999|""|""/999
