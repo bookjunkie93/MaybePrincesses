@@ -14,15 +14,16 @@ public class CodeSpawner : MonoBehaviour {
 	}
 
 	IEnumerator Wait() {
-		Debug.Log("Before Waiting 2 seconds");
+//		Debug.Log("Before Waiting 2 seconds");
 		yield return new WaitForSeconds(2);
-		Debug.Log("After Waiting 2 Seconds");
+//		Debug.Log("After Waiting 2 Seconds");
 		waiting = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		CheckButtonDown ();
+		//uncomment if buttondown check is working
+//		CheckButtonDown ();
 	}
 
 	void CheckButtonDown () {

@@ -8,12 +8,27 @@ public class ExecuteCode : MonoBehaviour {
 	[SerializeField] Transform dogbot;
 	Vector3 pos;
 	static public int numOfSheep;
+	public static ExecuteCode instance;
 //	static string[] commands;
 //	static int location;
-	
+	void Awake() {
+		instance = this;
+	}
 	// Use this for initialization
 	void Start () {
 		numOfSheep = 3;
+	}
+
+	public void ResetNum1 () {
+		numOfSheep = 3;
+	}
+
+	public void ResetNum2 () {
+		numOfSheep = 4;
+	}
+
+	public void SetLev2 () {
+		numOfSheep = 4;
 	}
 
 	public void initCode () {

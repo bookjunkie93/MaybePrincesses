@@ -3,9 +3,10 @@ using System.Collections;
 
 public class ResetCode : MonoBehaviour {
 	[SerializeField] Transform slots;
+	public static ResetCode instance;
 	// Use this for initialization
 	void Start () {
-	
+		instance = this;
 	}
 
 	public void EraseCode() {
