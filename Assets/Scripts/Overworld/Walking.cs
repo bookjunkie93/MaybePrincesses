@@ -41,8 +41,8 @@ public class Walking : MonoBehaviour
 
 		// For Followers:
 		lastPosition = transform.position;
-		prevPositions.Enqueue (transform.position);
-		prevDirections.Enqueue (anim.GetInteger("state"));
+//		prevPositions.Enqueue (transform.position);
+//		prevDirections.Enqueue (anim.GetInteger("state"));
 	}
 	
 	void Update () 
@@ -115,6 +115,7 @@ public class Walking : MonoBehaviour
 		}
 		else if ((Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) && tr.position == pos /*&& CheckTarget (Vector3.up)*/) 
 		{
+//			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			if (anim.GetInteger("state") != 4) {
 				anim.SetInteger("state", 4);
 			} else {
@@ -128,6 +129,7 @@ public class Walking : MonoBehaviour
 		}
 		else if ((Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)) && tr.position == pos /*&& CheckTarget (Vector3.down)*/) 
 		{
+//			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
 			if (anim.GetInteger("state") != 6) {
 				anim.SetInteger("state", 6);
 			} else {

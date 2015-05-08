@@ -25,7 +25,7 @@ public class Follower1 : MonoBehaviour {
 		
 		lastPosition = transform.position;
 		
-		prevPositions.Enqueue (transform.position);
+//		prevPositions.Enqueue (transform.position);
 		//prevDirections.Enqueue (anim.GetInteger("state"));
 	}
 	
@@ -40,7 +40,7 @@ public class Follower1 : MonoBehaviour {
 		}
 		lastPosition = transform.position;
 		
-		if (distance > 0.75) {
+		if (distance > 1) {
 			if (count != 0) {
 				myTransform.position = (Vector3) Walking.instance.prevPositions.Dequeue();
 				int dir = (int)Walking.instance.prevDirections.Dequeue();

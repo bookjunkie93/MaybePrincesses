@@ -26,7 +26,7 @@ public class Follower2: MonoBehaviour {
 		distance =Vector3.Distance(transform.position,target.position);
 		int count = Walking.instance.prevPositions.Count;
 		
-		if (distance > 0.75) {
+		if (distance > 1) {
 			if (count != 0) {
 				transform.position = (Vector3) Follower1.instance.prevPositions.Dequeue();
 //				int dir = (int) Follower1.instance.prevDirections.Dequeue();

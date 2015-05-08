@@ -1,0 +1,6 @@
+0|“Strange woman who just leapt out of the bushes: What do you think you're doing?!  Stop fixing all the things I broke fair and square!“|continue/1
+1|“Strange woman: I hate it when you children interfere with my nefarious plans!“|continue/2
+2|“Strange woman: But just you wait!  I'll make sure that no one passes the princess trials!”|continue/3
+3|“Strange woman: You may have stopped me this time, but I'll be back, and next time, things won't be so easy!”|continue/4
+4|”Strange woman: Hahahahaha!”|OK/999
+999|""|""/999

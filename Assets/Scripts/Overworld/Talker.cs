@@ -22,12 +22,15 @@ public class Talker : MonoBehaviour
 	public GameObject buttons;
 	public Button responsePrefab;
 	public TextAsset content;
-	Button response;	
+	Button response;
+	string nameHolder;	
 		
 	void Awake()
 	{
 		instance = this;
+		nameHolder = "[name]";
 	}
+	//initialize variables and import dialogue data
 	void Start ()
 	{	
 		proximity = false;
@@ -37,13 +40,17 @@ public class Talker : MonoBehaviour
 		UpdateCurrent();
 		spriteFace.sprite = charSprite;
 	}
-
-	public void UpdatePersistents(int node)
+	
+	//Swap out text variables with player data entered via UI
+	public void UpdatePersistents()
 	{
-		dialogTree[node].SetPrompt(AddPersistentText(dialogTree[node].getPrompt()));
+		for (int i =0; i < dialogTree.Count; i++){
+			dialogTree[i].SetPrompt(AddPersistentText(dialogTree[i].getPrompt()));
+		}
 		UpdateCurrent();
 	}
 
+	//swap a text holder with player input
 	string AddPersistentText (string text)
 	{	
 		string retval;
@@ -51,9 +58,11 @@ public class Talker : MonoBehaviour
 		{
 			return text;
 		}
-		retval = text.Replace("[name]", GameManagerScript.control.playerName);
+		retval = text.Replace(nameHolder, GameManagerScript.control.playerName);
 		return retval;
 	}
+	//takes a .txt file of a dialogue tree and parses it into
+	//DialogNodes stored in a Generic List
 	void ParseText ()
 	{
 		int num;
@@ -69,7 +78,7 @@ public class Talker : MonoBehaviour
 			string [] vars = nodes[i].Split('|');
 			num = int.Parse (vars[0].Trim ('|'));
 			prompt = vars [1].Trim('|');
-			prompt = AddPersistentText(vars[1]);
+			prompt = AddPersistentText(vars[1]); //go through and swap text holders with player prefs
 			for(int j = 2; j < vars.Length; j++)
 			{
 				string[] components = vars[j].Split('/');
@@ -80,28 +89,33 @@ public class Talker : MonoBehaviour
 				tempR.goToNode = int.Parse (components[1].TrimStart('|'));
 				rList.Add(tempR);
 			}
-			temp.SetNode(num, prompt, rList);
+			temp.SetNode(num, prompt, rList); //construct a DialogNode from parsed data
 			dialogTree.Add(temp);
 		}
 	}
+	
+	//switch current node to the next chosen node
 	public void ChangeCurrent (int node)
 	{
 		if(node == 999){return;}
 		current = dialogTree[node];
 		UpdateCurrent();
 	}
+	
+	//"refresh" the current node to propagate changes
 	public void UpdateCurrent()
 	{
 		dialogText = current.getPrompt();
 		responses = current.getResponses();
-		boxText.text = dialogText;
-		CleanButtons();
+		boxText.text = dialogText; //update UI text
+		CleanButtons(); //remove old buttons
 		AddResponses();
 		if(!cutscene) 
 		{
 			dialogBox.gameObject.SetActive(false);
 		}
 	}
+	
 	void CleanButtons()
 	{
 		foreach(Transform child in buttons.transform)
@@ -110,19 +124,21 @@ public class Talker : MonoBehaviour
 		}
 	}
 		
-	
+	//when triggered, initiate proximity text algorithms
 	void OnTriggerEnter2D (Collider2D collider)
 	{
 		proximity = true;
 		boxText.text = proximityText;
 		
 	}
+	//remove proximity text when leaving radius of Talker
 	void OnTriggerExit2D (Collider2D collider)
 	{
 		boxText.text = noText;
 		proximity = false;
 	}
-		
+	
+	//instantiate buttons, add text, and add them to the tree	
 	void AddResponses ()
 	{
 		for(int i = 0; i < responses.Count; i++)
@@ -141,6 +157,8 @@ public class Talker : MonoBehaviour
 			}
 		}
 	}	
+
+	//monitor scene for interactions
 	void OnGUI ()
 	{
 		if (cutscene)

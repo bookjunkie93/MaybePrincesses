@@ -12,11 +12,12 @@ public class DialogNode {
 	string prompt;
 	List<response> responses;
 	public TextAsset content;
-	// Use this for initialization
+
 	void Awake () {
 		responses = new List<response>();
 		//PrintContent();
 	}
+	//in lieu of constructor
 	public void SetNode (int num, string pmpt, List<response> input)
 	{
 		bool addChildren = false;
@@ -24,13 +25,12 @@ public class DialogNode {
 		prompt = pmpt;
 		responses = input;	
 	}
-
-	
 	
 	public string getPrompt ()
 	{
 		return prompt;
 	}
+
 	public void SetPrompt (string input)
 	{
 		prompt = input;
@@ -40,6 +40,7 @@ public class DialogNode {
 	{
 		return responses;
 	}
+
 	void PrintContent ()
 	{
 		Debug.Log(prompt);
@@ -49,17 +50,9 @@ public class DialogNode {
 		}
 	}
 
-	
-
 	public DialogNode GoToChild (int child)
 	{
 		return Talker.instance.dialogTree[child];
 	}
-	
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
+
 }

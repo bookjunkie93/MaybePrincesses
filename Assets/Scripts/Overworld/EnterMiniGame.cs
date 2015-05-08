@@ -16,6 +16,15 @@ public class EnterMiniGame : MonoBehaviour
 	{
 
 			//save Player progress and location for re-loading after minigame
+		switch(gameNumber)
+		{
+			case 9:
+				if (GameManagerScript.control.sheepIntro) {gameNumber = 2;}
+				break;
+			case 8:
+				if (GameManagerScript.control.circuitIntro) {gameNumber = 3;}
+				break;
+		}
 
 		ReturnToLevel();
 
