@@ -1,5 +1,5 @@
 # MaybePrincesses
 COMP150
 
-[Website](https://maybeprincesses.wix.com/maybeprincesses)
+[Website](http://maybeprincesses.wix.com/maybeprincesses)
 
